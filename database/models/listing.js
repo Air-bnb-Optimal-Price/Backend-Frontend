@@ -5,15 +5,18 @@ module.exports = (sequelize, DataTypes) => {
     country: DataTypes.STRING,
     zip: DataTypes.STRING,
     street_addr: DataTypes.STRING,
-    long: DataTypes.NUMBER,
-    lat: DataTypes.NUMBER,
+    long: DataTypes.INTEGER,
+    lat: DataTypes.INTEGER,
     room_type: DataTypes.STRING,
-    price: DataTypes.NUMBER,
-    minimum_nights: DataTypes.NUMBER,
-    availability_365: DataTypes.NUMBER
+    price: DataTypes.INTEGER,
+    minimum_nights: DataTypesINTEGBER,
+    availability_365: DataTypes.INTEGER
   }, {});
   Listing.associate = function(models) {
-    // associations can be defined here
+    Post.blongsTo(models.User, {
+      as: 'host',
+      onDelete: 'CASCADE'
+    })
   };
   return Listing;
 };

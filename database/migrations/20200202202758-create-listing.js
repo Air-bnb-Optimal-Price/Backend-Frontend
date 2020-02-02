@@ -21,22 +21,22 @@ module.exports = {
         type: Sequelize.STRING
       },
       long: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER
       },
       lat: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER
       },
       room_type: {
         type: Sequelize.STRING
       },
       price: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER
       },
       minimum_nights: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER
       },
       availability_365: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

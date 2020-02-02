@@ -1,8 +1,8 @@
 require('dotenv').config()
-
+console.log('config invoked')
 module.exports = {
   development: {
-    url: process.env.DEV_DAb_URL,
+    url: process.env.DEV_DB_URL,
     dialect: 'postgres',
   },
   test: {
