@@ -9,9 +9,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // user made imports
-const { register, login, changePassword, deleteAccount } = require('./libs/users/controllers')
-const { getHackers, getMeanestHackers } = require('./libs/hackers/controllers')
-const { ensureAuthenticated } = require('./libs/users/middleware')
+const { register, login, changePassword, deleteAccount } = require('./libs/user/controllers')
+// const { getHackers, getMeanestHackers } = require('./libs/hackers/controllers')
+const { ensureAuthenticated } = require('./libs/user/middleware')
 
 // routes 
 app.use(express.static(path.resolve(__dirname, '..', 'client', 'build')));
@@ -24,9 +24,9 @@ app.put('/user/changePass', ensureAuthenticated, changePassword)
 app.delete('/user/deleteAccount', ensureAuthenticated, deleteAccount)
 // app.get('/hackers/getMean', ensureAuthenticated, getMeanestHackers)
 // app.get('/hackers/getBusy', ensureAuthenticated, getHackers)
-// app.get('/*', function (req, res) {
-//   return res.sendFile(path.resolve(__dirname, '..', 'client', 'build', 'index.html'));
-// });
+app.get('/*', function (req, res) {
+  return res.sendFile(path.resolve(__dirname, '..', 'client', 'build', 'index.html'));
+});
 
 // error handling
 app.use((err, req, res, next) => {

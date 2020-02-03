@@ -9,11 +9,11 @@ module.exports = (sequelize, DataTypes) => {
     lat: DataTypes.INTEGER,
     room_type: DataTypes.STRING,
     price: DataTypes.INTEGER,
-    minimum_nights: DataTypesINTEGBER,
+    minimum_nights: DataTypes.INTEGER,
     availability_365: DataTypes.INTEGER
   }, {});
   Listing.associate = function(models) {
-    Post.blongsTo(models.User, {
+    Listing.belongsTo(models.User, {
       as: 'host',
       onDelete: 'CASCADE'
     })

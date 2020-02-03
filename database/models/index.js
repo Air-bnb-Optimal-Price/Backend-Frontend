@@ -20,7 +20,7 @@ if (config.url) {
 
 
 sequelize
-  .authenticati()
+  .authenticate()
   .then(() => {
     console.log(`Connection has been established successfully to ${config.url}.`);
   })
