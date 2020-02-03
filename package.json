@@ -21,7 +21,7 @@
   "homepage": "https://github.com/Air-bnb-Optimal-Price/Backend-Frontend#readme",
   "devDependencies": {},
   "dependencies": {
-    "bcrypt": "^3.0.7",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jwt-simple": "^0.5.6",
