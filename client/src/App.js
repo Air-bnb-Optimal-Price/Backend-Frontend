@@ -5,6 +5,7 @@ import PrivateRoute from "./components/PrivateRoute.js";
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios'
+import RentalEvaluationForm from './components/RentalEvaluationForm';
 
 function App() {
   const [pong, setPong] = useState("")
@@ -22,15 +23,19 @@ function App() {
     pingPong()
   }, [])
   return (
-    <div className="App">
-      <header className="App-header">
+    <Router>
+      <div className="App">
+        <header className="App-header">
 
-        <p>
-          {pong ? pong : "backend not pinging"}
-        </p>
+          <p>
+            {pong ? pong : "backend not pinging"}
+          </p>
 
-      </header>
-    </div>
+        </header>
+        <Route exact path="/" component={Login} />
+        <Route path="/rentalevaluation" component={RentalEvaluationForm} />
+      </div>
+    </Router>
   );
 }
 
