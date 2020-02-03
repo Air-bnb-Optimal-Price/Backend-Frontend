@@ -1,0 +1,20 @@
+.rentalEvaluationContainer {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+}
+
+.rentalEvaluationContainer .rentalInput, .rentalEvaluationContainer .rentalPrediction {
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: gray;
+    min-width: 600px;
+    min-height: 600px;
+    width: 49%;
+}
+
+.rentalEvaluationContainer h1 {
+    width: 100%;
+}
+
