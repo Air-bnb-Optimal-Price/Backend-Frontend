@@ -128,7 +128,7 @@ export default RentalEvaluationForm;
 // host_is_superhost - bool - Is the user host a super member?
 // latitude - float/number - 15 decimal places
 // longitude - float/number - 15 decimal places
-                      // property_type - int(1) - 0 = Guesthouse, 1 = Apartment, 2 = Condo, 3 = House, 4 = Other
+                        // property_type - int(1) - 0 = Guesthouse, 1 = Apartment, 2 = Condo, 3 = House, 4 = Other
 // room_type - int(1) - 0 = Private Room, 1 = Entire House, 2 = Other
                       // accomodates - int(1) <= 6 - How many people can it handle? 
                       // bathrooms - int(1) <= 5 - How many bathrooms?
