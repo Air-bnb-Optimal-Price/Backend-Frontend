@@ -11,14 +11,14 @@
     background-color: gray;
     min-width: 500px;
     min-height: 600px;
-    width: 100%;
+    width: 49%;
 }
 
 .rentalEvaluationContainer h1, .rentalEvaluationContainer form {
     width: 100%;
 }
 
-.guestCount {
+.guestCount, .propertyTypes, .cancellationPolicies {
     width:100%;
     display: flex;
 }
@@ -28,6 +28,43 @@
     height:50px;
 }
 
-.guestIcon.selected {
+.rentalEvaluationContainer .selected {
     fill: blue;
+}
+
+.propertyTypes .propertyTypeIcon {
+    width:50px;
+    height:50px;    
+}
+
+.extraGuestFee {
+    
+}
+
+.cancellationPolicies {
+    
+}
+
+.cancellationPolicy {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+}
+
+.cancellationPolicy.selected {
+    display: inline;
+    background: blue;
+}
+.bathroomCount {
+    display: flex;
+}
+
+.bathroomIcon {
+    width: 50px;
+    height: 50px;
+}
+
+.bathroomIcon.selected {
+    display: inline;
+    background: blue;
 }
