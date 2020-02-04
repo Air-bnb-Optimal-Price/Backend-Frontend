@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import RegisterLogin from "./components/RegisterLoginSection/RegisterLoginContainer/RegisterLogin";
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Login from './components/Login'
 import axios from 'axios'
 import RentalEvaluationForm from './components/RentalEvaluationForm';
 
@@ -25,14 +24,10 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <header className="App-header">
-
-          <p>
-            {pong ? pong : "backend not pinging"}
-          </p>
-
-        </header>
-        <Route exact path="/" component={Login} />
+       
+        <Router exact path="/register">
+            <RegisterLogin />
+        </Router>
         <Route path="/rentalevaluation" component={RentalEvaluationForm} />
       </div>
     </Router>
