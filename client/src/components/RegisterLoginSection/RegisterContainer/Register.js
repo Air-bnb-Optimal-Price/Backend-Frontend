@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { withFormik, Form, Field } from 'formik';
 
-function Register(props) {
+function Register({values, errors, touched, status}) {
 const [register, setRegister] = useState();
 
     useEffect(() => {
