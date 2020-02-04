@@ -1,17 +1,26 @@
 .rentalEvaluationContainer {
     display: flex;
-    align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
+    background: lightblue;
+    padding: 5px;
     /* flex-direction: column; */
 }
 
+.rentalInput{
+    display: flex;
+    align-items: center;
+
+}
 .rentalEvaluationContainer .rentalInput, .rentalEvaluationContainer .rentalPrediction {
     border: 1px solid black;
     border-radius: 10px;
+    box-shadow: 5px 5px 5px 1px black;
     background-color: gray;
     min-width: 500px;
     min-height: 600px;
     width: 49%;
+    margin: 5px;
 }
 
 .rentalEvaluationContainer h1, .rentalEvaluationContainer form {
@@ -67,4 +76,23 @@
 .bathroomIcon.selected {
     display: inline;
     background: blue;
+}
+
+.bedroomCount {
+    display: flex;
+}
+.bedroomIcon  {
+    width: 50px;
+    height: 50px;
+}
+
+.nightStayCount {
+    display: flex;
+}
+.nightsIcon {
+    width: 50px;
+    height: 50px;
+}
+.nightsIcon.selected {    
+    fill: blue;
 }
