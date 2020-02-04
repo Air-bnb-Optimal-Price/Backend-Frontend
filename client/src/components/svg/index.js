@@ -1,0 +1,1 @@
+export {svg1} from 'svg1';
