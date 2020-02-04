@@ -2,6 +2,7 @@ import React from 'react';
 import './RegisterLogin.css';
 import Register from '../RegisterContainer/Register';
 import Login from '../LoginContainer/Login';
+import { Route } from 'react-router-dom';
 
 function RegisterLogin(props) {
     return (
@@ -9,9 +10,12 @@ function RegisterLogin(props) {
             <nav> 
                 <h1><i className="fab fa-airbnb"></i></h1>
             </nav>
-            
-            <Register />
-            <Login />
+            <Route exact path="/register">
+                <Register />
+            </Route>
+            <Route path="/login">
+                <Login />
+            </Route>
         </div>
     );
 }
