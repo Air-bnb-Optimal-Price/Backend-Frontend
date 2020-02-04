@@ -12,11 +12,12 @@ module.exports = (sequelize, { STRING, INTEGER, FLOAT }) => {
     bedrooms: INTEGER,
     beds: INTEGER,
     security_deposit: FLOAT,
-    cleaning_fee: float,
+    cleaning_fee: FLOAT,
     extra_people: FLOAT,
     cancellation_policy: INTEGER,
     price: INTEGER,
     minimum_nights: INTEGER,
+    property_type: INTEGER,
     availability_365: INTEGER,
 
   }, {});
