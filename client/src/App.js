@@ -28,7 +28,7 @@ function App() {
         <header className="App-header">
 
           <p>
-            {pong ? pong : "backend not pinging"}
+            {/* {pong ? pong : "backend not pinging"} */}
           </p>
 
         </header>
