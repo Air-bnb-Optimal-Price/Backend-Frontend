@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    background: lightblue;
     padding: 5px;
     /* flex-direction: column; */
 }
@@ -17,8 +16,8 @@
     border-radius: 10px;
     box-shadow: 5px 5px 5px 1px black;
     background-color: gray;
-    min-width: 500px;
-    min-height: 600px;
+    min-width: 400px;
+    min-height: 500px;
     width: 49%;
     margin: 5px;
 }
@@ -75,7 +74,7 @@
 
 .bathroomIcon.selected {
     display: inline;
-    background: blue;
+    fill: blue;
 }
 
 .bedroomCount {
