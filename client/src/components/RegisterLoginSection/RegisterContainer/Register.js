@@ -6,6 +6,7 @@ function Register(props) {
         <div className="register-container">
             <form>
                 <div className="input-wrapper">
+                    <h2>Register</h2>
                     <div className="input-container">
                         <label htmlFor="user">Username</label>
                         <input id="user" type='text' placeholder="Enter Username"/>
