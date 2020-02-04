@@ -25,7 +25,7 @@ function Register(props) {
                     </div>
                 
                     <button type="submit">Register</button> 
-                    <div className="input-container">
+                    <div className="input-container link">
                         <p>Already Signed Up?</p><a href="#">Login</a>
                     </div>
                 </div>

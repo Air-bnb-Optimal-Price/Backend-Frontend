@@ -6,6 +6,7 @@
   background-position: center;
   background-position-y: center;
   display: flex;
+  justify-content: center;
   
 }
 
