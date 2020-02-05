@@ -9,7 +9,6 @@ function Login(props) {
         const [login, setLogin] = useState({
             username: '',
             password: '',
-            password2: ''
         });
         const [error, setError] = useState("");
         const [passwordError, setPasswordError] = useState("")
@@ -22,14 +21,14 @@ function Login(props) {
                     Axios.post("/user/login", { username: login.username, password: login.password })
                 .then((res) => {
                     console.log(res.data)
-                    history.push('/login') // if and only if no error, we redirect to login
+                    history.push('/rentalevaluation') // if and only if no error, we redirect to login
                 })
                 .catch(e => {
                     console.log(JSON.stringify(e.response, 0, 2))
                     setError(e.response.data.msg)
                     // if error, we show error message for 3 seconds
                     setTimeout(() => {
-                        setError("")
+                        setError("");
                     }, 3000)
                 })
         
@@ -65,7 +64,7 @@ function Login(props) {
                             placeholder="Enter Username"
                             autoComplete="off"
                         />
-                        <span className="error-text">{error}</span>
+                        
                     </div>
 
                     <div className="input-container">
@@ -79,7 +78,7 @@ function Login(props) {
                             placeholder="Enter Password"
                             autoComplete="off"
                         />
-                        <span className="error-text">{passwordError}</span>
+                        <span className="error-text">{error}</span>
                     </div>
                     
                     <button type="submit">Login</button> 

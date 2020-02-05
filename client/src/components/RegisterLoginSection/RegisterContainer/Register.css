@@ -11,7 +11,7 @@
     padding-top: 48px;
     /* margin-top: 8vh; */
     border-radius: 7px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     /* border: 1px solid #cacaca; */
     /* box-shadow: 0 4px 5px 7px rgba(37, 37, 37, 0.336), 0 6px 20px 5px rgba(145, 145, 146, 0.336); */
     
@@ -34,7 +34,7 @@ input {
     height: 40px;
     padding-left: 3%;
     margin-bottom: 18px;
-    border-radius: px;
+    border-radius: 7px;
     border: 1px solid #8d8d8dfd;
     outline: none;
     color: gray;
