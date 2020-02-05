@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 // user made imports
 const { register, login, changePassword, deleteAccount } = require('./libs/user/controllers')
 const { ensureAuthenticated } = require('./libs/user/middleware')
+const { postListing } = require('./libs/listing/controllers')
 
 // routes 
 app.use(express.static(path.resolve(__dirname, '..', 'client', 'build')));
@@ -20,10 +21,16 @@ app.get('/', function (req, res) {
 app.get('/ping', function (req, res, next) {
   res.json({ pong: "pong" })
 })
+// user routes
 app.post('/user/register', register);
 app.post('/user/login', login)
 app.put('/user/changePass', ensureAuthenticated, changePassword)
 app.delete('/user/deleteAccount', ensureAuthenticated, deleteAccount)
+
+// listing routes
+app.post('/listing', postListing)
+
+// catch all
 app.get('/*', function (req, res) {
   return res.sendFile(path.resolve(__dirname, '..', 'client', 'build', 'index.html'));
 });
