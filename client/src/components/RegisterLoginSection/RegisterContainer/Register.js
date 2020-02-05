@@ -11,35 +11,51 @@ const [register, setRegister] = useState({
         password: '',
         password2: ''
 });
+const [newUser, setNewUser] = useState(register);
 
-    const handleSubmit = async e => {
-        e.preventDefault();
-        if(register.password !== register.password2) {
-            console.log("Passwords do not match!");
-        } else {
-            const newUser = {
-                username: e.target.value,
-                password: e.target.value,
-                password2: e.target.value
-            }
-            try {
-                const config = {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-            const body = JSON.stringify(newUser);
-            const res = await Axios.post('/user/register', body, config)
-                await res.then(res => {
-                    console.log(res);
-                })
-                console.log(res);
-            } catch(err) {
-                console.log("Error:", err);
-            }
-        } 
-    }  
+    // const handleSubmit = async e => {
+    //     e.preventDefault();
+    //     if(register.password !== register.password2) {
+    //         console.log("Passwords do not match!");
+    //     } else {
+    //         const newUser = {
+    //             username: e.target.value,
+    //             password: e.target.value,
+    //             password2: e.target.value
+    //         }
+    //         try {
+    //             const config = {
+    //                 headers: {
+    //                     'Content-Type': 'application/json'
+    //                 }
+    //             }
+    //         const body = JSON.stringify(newUser);
+    //         const res = await Axios.post('/user/register', body, config)
+    //             await res.then(res => {
+    //                 console.log(res);
+    //             })
+    //             console.log(res);
+    //         } catch(err) {
+    //             console.log("Error:", err);
+    //         }
+    //     } 
+    // }  
+ const handleSubmit = () => {
+    setNewUser({
+        ...register,
+        username: register.username,
+        password: register.password,
+        password2: register.password2
+    })
 
+    console.log(newUser);
+ }
+    useEffect(() => {
+       
+    Axios.post("/user/register", newUser).then((res) => {
+        console.log(res)
+    })
+}, [])
     
 const handleInput = e => {
     setRegister({
