@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './RentalEvaluationForm.css';
 import axiosWithAuth from '../auth/axiosWithAuth.js';
+import RentalPrediction from './RentalPrediction';
 import { ReactComponent as ManIcon } from './icons/man.svg';
 import { ReactComponent as MoonIcon } from './icons/moon.svg';
 import { ReactComponent as PlusIcon } from './icons/plus.svg';
@@ -17,6 +18,7 @@ import { ReactComponent as CleaningFee } from './icons/cleaning.svg';
 import { ReactComponent as SecurityDeposit } from './icons/bank.svg';
 
 const RentalEvaluationForm = () => {
+  const [stepCount, setStepCount] = useState(1);
   const [guestCount, setGuestCount] = useState(1);
   const [propertyType, setPropertyType] = useState(1);
   const [extraGuestFee, setExtraGuestFee] = useState(0);
@@ -25,8 +27,22 @@ const RentalEvaluationForm = () => {
   const [bedroomCount, setBedroomCount] = useState(1);
   const [nightStayCount, setNightStayCount] = useState(1);
   const [cleaningFee, setCleaningFee] = useState(0);
-  const [securityDeposit, setSecurityDeposit] = useState(0)
+  const [securityDeposit, setSecurityDeposit] = useState(0);
+  const [predictedPrice, setPredictedPrice] = useState(0);
+  const [address, setAddress] = useState();
 
+  const handleStepIncrement = () => {
+    setStepCount(Math.min(8, stepCount + 1));
+    if (stepCount == 8) {
+      submitProperty();
+    }
+  }
+  const handleStepDecrement = () => {
+    setStepCount(Math.max(1, stepCount - 1));
+  }  
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  }  
   const handleOnclickIcon = (newval) => {
     setGuestCount(newval);
   }
@@ -55,24 +71,60 @@ const RentalEvaluationForm = () => {
     setSecurityDeposit(e.target.value);
   }
   const handleAddressChange = (e) => {
+    setAddress(e.target.value);
+  }
+  const getPostableData = () => {
+    // country: STRING,
+    // zip: STRING,
+    // street_addr: STRING,
+    // long: INTEGER,
+    // lat: INTEGER,
+    // room_type: INTEGER,
+    // accomodates: INTEGER,
+    // bathrooms: FLOAT,
+    // bedrooms: INTEGER,
+    // beds: INTEGER,
+    // security_deposit: FLOAT,
+    // cleaning_fee: FLOAT,
+    // extra_people: FLOAT,
+    // cancellation_policy: INTEGER,
+    // price: INTEGER,
+    // minimum_nights: INTEGER,
+    // property_type: INTEGER,
+    // availability_365: INTEGER,
+    return {
+      "country": "Germany",
+      "accomodates": guestCount,
+      "property_type": propertyType,
+      "extra_people": extraGuestFee,
+      "cancellation_policy": cancellationPolicy,
+      "bathrooms": bathroomCount,
+      "minimum_nights": nightStayCount,
+      "cleaning_fee": cleaningFee,
+      "security_deposit": securityDeposit,
+      "street_addr": address,
+      "bedrooms": bedroomCount
+    }
+  }
+  const submitProperty = () => {
     axiosWithAuth()
-    .get("" + e.target.value)
+    .post("/listing", getPostableData())
     .then(res => console.log( res ));
   }
 
   return <div className='rentalEvaluationContainer'>
     <h1>Rental Evaluation Form</h1>
     <div className='rentalInput'>
-      <form>
+      <form onSubmit={handleSubmit} >
         {/* Number of guests */}
         <div>GuestCount: {guestCount}</div>
-        <div className='guestCount'>
+        <div className={(stepCount == 1) ? 'guestCount' : 'guestCount hidden'}>
           {[0, 1, 2, 3, 4, 5].map(elem => <div onClick={() => { handleOnclickIcon(elem + 1) }} className={(guestCount > elem) ? 'guestIcon icon selected' : 'guestIcon icon'}>
             <ManIcon />
           </div>)}
         </div>
         {/* Extra guest fee */}
-        <div className='extraGuestFee'>
+        <div className={(stepCount == 1) ? 'extraGuestFee' : 'extraGuestFee hidden'}>
           <span>Fee per extra guest:</span>
           <input
             type='number' min="0.00" step="0.01" max="999"
@@ -84,7 +136,7 @@ const RentalEvaluationForm = () => {
           </input>
         </div>
         {/* minimum nights stay */}
-        <div className='nightStayCount'>
+        <div className={(stepCount == 2) ? 'nightStayCount' : 'nightStayCount hidden'}>
           {[0, 1, 2, 3, 4, 5].map(elem => <div onClick={() => { handleOnclickNightStay(elem + 1) }} className={(nightStayCount > elem) ? 'nightsIcon icon selected' : 'nightsIcon icon'}>
             <MoonIcon />
           </div>)}
@@ -93,7 +145,7 @@ const RentalEvaluationForm = () => {
           </div>
         </div>
         {/* number of bedrooms */}
-        <div className='bedroomCount'>
+        <div className={(stepCount == 3) ? 'bedroomCount' : 'bedroomCount hidden'}>
           <div onClick={() => { handleOnclickBedroom(0) }} className={(bedroomCount == 0) ? 'bedroomIcon selected icon' : 'bedroomIcon icon'}>
             <NoBedIcon />
           </div>
@@ -102,7 +154,7 @@ const RentalEvaluationForm = () => {
           </div>)}
         </div>
         {/* type of property */}
-        <div className='propertyTypes'>
+        <div className={(stepCount == 4) ? 'propertyTypes' : 'propertyTypes hidden'}>
           {[1, 2, 3, 4, 5].map(elem => <div onClick={() => { handleOnclickPropertyType(elem) }} className={(propertyType == elem) ? 'propertyTypeIcon icon selected' : 'propertyTypeIcon icon'}>
             {(elem == 1) ? <GuestHouse /> : ''}
             {(elem == 2) ? <Apartment /> : ''}
@@ -113,19 +165,19 @@ const RentalEvaluationForm = () => {
           </div>)}
         </div>
         {/* number of bathrooms */}
-        <div className='bathroomCount'>
+        <div className={(stepCount == 5) ? 'bathroomCount' : 'bathroomCount hidden'}>
           {[0, 1, 2, 3, 4, 5].map(elem => <div onClick={() => { handleOnclickBathroom(elem + 1) }} className={(bathroomCount > elem) ? 'bathroomIcon icon selected' : 'bathroomIcon icon'}>
             <Bathrooms />
           </div>)}
         </div>
         {/* cancellation policy */}
-        <div className='cancellationPolicies'>
+        <div className={(stepCount == 6) ? 'cancellationPolicies' : 'cancellationPolicies hidden'}>
           {[[0, 'Flexible'], [1, '14'], [3, '30'], [4, '60']].map(elem => <div onClick={() => { setCancellationPolicy(elem[0]) }} className={(cancellationPolicy == elem[0]) ? 'cancellationPolicy selected' : 'cancellationPolicy'}>
             {elem[1]}
           </div>)}
         </div>
         {/* cleaning fee */}
-        <div className='cleaningFeePolicy'>
+        <div className={(stepCount == 7) ? 'cleaningFeePolicy' : 'cleaningFeePolicy hidden'}>
           <div className='cleaningFee'>
             <div className={(cleaningFee > 0) ? 'maidContainer icon selected' : 'maidContainer icon'}>
               <CleaningFee />
@@ -139,7 +191,7 @@ const RentalEvaluationForm = () => {
           </div>
         </div>
         {/* security deposit */}
-        <div className='securityDepositContainer'>
+        <div className={(stepCount == 8) ? 'securityDepositContainer' : 'securityDepositContainer hidden'}>
           <div className='securityDepositIcon icon'>
               <SecurityDeposit />
           </div>
@@ -150,9 +202,12 @@ const RentalEvaluationForm = () => {
             onChange={handleSecurityDeposit}>
           </input>
         </div>
+        <button onClick={() => { handleStepIncrement() }} >Next</button>     
+        <button onClick={() => { handleStepDecrement() }} >Previous</button>
       </form>
     </div>
     <div className='rentalPrediction'>
+      <RentalPrediction predictedPrice={predictedPrice} />
     </div>
   </div>
 }
