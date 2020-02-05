@@ -3,7 +3,7 @@ const { decodeToken, getUserByID } = require('./../services')
 // decode token
 // return authorized: true if token decodes,
 // return false if no token or token does not decode
-module.exports = async (req, res, next) => {
+module.exports = (req, res, next) => {
     let user
     console.log('authReq', req.headers)
     if (!(req.headers && req.headers.authorization)) {

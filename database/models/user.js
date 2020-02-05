@@ -5,11 +5,6 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     password: DataTypes.STRING
   }, {});
-  User.associate = function(models) {
-    User.hasMany(models.Listing, {
-      as: 'listings',
-      onDelete: 'CASCADE'
-    })
-  };
+ 
   return User;
 };
