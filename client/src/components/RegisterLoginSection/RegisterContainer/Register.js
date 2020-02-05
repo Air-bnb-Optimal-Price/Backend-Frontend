@@ -12,7 +12,7 @@ const [register, setRegister] = useState({
         password2: ''
 });
 
-const handleSubmit = async e => {
+    const handleSubmit = async e => {
         e.preventDefault();
         if(register.password !== register.password2) {
             console.log("Passwords do not match!");
@@ -39,6 +39,7 @@ const handleSubmit = async e => {
             }
         } 
     }  
+
     
 const handleInput = e => {
     setRegister({
@@ -108,22 +109,7 @@ const handleInput = e => {
 //         }
 //     }
 
-
-
-
 // })(Register);
 
 export default Register;
 
-
-//  useEffect(() => {
-//         Axios.post("/user/register", {
-
-
-//         })
-//         .then(res => {
-//             console.log(res);    
-//         }).catch(error => {
-//             console.log(error)
-//         })
-//     }, []);

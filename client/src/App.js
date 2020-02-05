@@ -20,7 +20,7 @@ function App() {
       }
     }
     pingPong()
-  }, [])
+  }, [pong])
   return (
     <Router>
       <div className="App">
