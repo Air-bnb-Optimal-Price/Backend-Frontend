@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './RentalEvaluationForm.css';
-import axios from 'axios';
+import axiosWithAuth from '../auth/axiosWithAuth.js';
 import { ReactComponent as ManIcon } from './icons/man.svg';
 import { ReactComponent as MoonIcon } from './icons/moon.svg';
 import { ReactComponent as PlusIcon } from './icons/plus.svg';
@@ -25,6 +25,7 @@ const RentalEvaluationForm = () => {
   const [bedroomCount, setBedroomCount] = useState(1);
   const [nightStayCount, setNightStayCount] = useState(1);
   const [cleaningFee, setCleaningFee] = useState(0);
+  const [securityDeposit, setSecurityDeposit] = useState(0)
 
   const handleOnclickIcon = (newval) => {
     setGuestCount(newval);
@@ -50,14 +51,12 @@ const RentalEvaluationForm = () => {
   const handleCleaningFee = (e) => {
     setCleaningFee(e.target.value);
   }
-  const handleAddressChange = (address) => {
-    var data = {
-        "format": "json",
-        "addressdetails": 1,
-        "q": address,
-        "limit": 1
-    };
-    axios().post("https://nominatim.openstreetmap.org", data)
+  const handleSecurityDeposit = (e) => {
+    setSecurityDeposit(e.target.value);
+  }
+  const handleAddressChange = (e) => {
+    axiosWithAuth()
+    .get("" + e.target.value)
     .then(res => console.log( res ));
   }
 
@@ -66,8 +65,9 @@ const RentalEvaluationForm = () => {
     <div className='rentalInput'>
       <form>
         {/* Number of guests */}
+        <div>GuestCount: {guestCount}</div>
         <div className='guestCount'>
-          {[0, 1, 2, 3, 4, 5].map(elem => <div onClick={() => { handleOnclickIcon(elem + 1) }} className={(guestCount > elem) ? 'guestIcon selected' : 'guestIcon'}>
+          {[0, 1, 2, 3, 4, 5].map(elem => <div onClick={() => { handleOnclickIcon(elem + 1) }} className={(guestCount > elem) ? 'guestIcon icon selected' : 'guestIcon icon'}>
             <ManIcon />
           </div>)}
         </div>
@@ -85,25 +85,25 @@ const RentalEvaluationForm = () => {
         </div>
         {/* minimum nights stay */}
         <div className='nightStayCount'>
-          {[0, 1, 2, 3, 4, 5].map(elem => <div onClick={() => { handleOnclickNightStay(elem + 1) }} className={(nightStayCount > elem) ? 'nightsIcon selected' : 'nightsIcon'}>
+          {[0, 1, 2, 3, 4, 5].map(elem => <div onClick={() => { handleOnclickNightStay(elem + 1) }} className={(nightStayCount > elem) ? 'nightsIcon icon selected' : 'nightsIcon icon'}>
             <MoonIcon />
           </div>)}
-          <div onClick={() => { handleOnclickNightStay(7) }} className={(nightStayCount > 6) ? 'nightsIcon selected' : 'nightsIcon'}>
+          <div onClick={() => { handleOnclickNightStay(7) }} className={(nightStayCount > 6) ? 'nightsIcon icon selected' : 'nightsIcon icon'}>
             <PlusIcon />
           </div>
         </div>
         {/* number of bedrooms */}
         <div className='bedroomCount'>
-          <div onClick={() => { handleOnclickBedroom(0) }} className={(bedroomCount == 0) ? 'bedroomIcon selected' : 'bedroomIcon'}>
+          <div onClick={() => { handleOnclickBedroom(0) }} className={(bedroomCount == 0) ? 'bedroomIcon selected icon' : 'bedroomIcon icon'}>
             <NoBedIcon />
           </div>
-          {[1, 2, 3, 4, 5].map(elem => <div onClick={() => { handleOnclickBedroom(elem) }} className={(bedroomCount > elem - 1) ? 'bedroomIcon selected' : 'bedroomIcon'}>
+          {[1, 2, 3, 4, 5].map(elem => <div onClick={() => { handleOnclickBedroom(elem) }} className={(bedroomCount > elem - 1) ? 'bedroomIcon icon selected' : 'bedroomIcon icon'}>
             <BedIcon />
           </div>)}
         </div>
         {/* type of property */}
         <div className='propertyTypes'>
-          {[1, 2, 3, 4, 5].map(elem => <div onClick={() => { handleOnclickPropertyType(elem) }} className={(propertyType == elem) ? 'propertyTypeIcon selected' : 'propertyTypeIcon'}>
+          {[1, 2, 3, 4, 5].map(elem => <div onClick={() => { handleOnclickPropertyType(elem) }} className={(propertyType == elem) ? 'propertyTypeIcon icon selected' : 'propertyTypeIcon icon'}>
             {(elem == 1) ? <GuestHouse /> : ''}
             {(elem == 2) ? <Apartment /> : ''}
             {(elem == 3) ? <Condo /> : ''}
@@ -114,7 +114,7 @@ const RentalEvaluationForm = () => {
         </div>
         {/* number of bathrooms */}
         <div className='bathroomCount'>
-          {[0, 1, 2, 3, 4, 5].map(elem => <div onClick={() => { handleOnclickBathroom(elem + 1) }} className={(bathroomCount > elem) ? 'bathroomIcon selected' : 'bathroomIcon'}>
+          {[0, 1, 2, 3, 4, 5].map(elem => <div onClick={() => { handleOnclickBathroom(elem + 1) }} className={(bathroomCount > elem) ? 'bathroomIcon icon selected' : 'bathroomIcon icon'}>
             <Bathrooms />
           </div>)}
         </div>
@@ -124,9 +124,10 @@ const RentalEvaluationForm = () => {
             {elem[1]}
           </div>)}
         </div>
+        {/* cleaning fee */}
         <div className='cleaningFeePolicy'>
           <div className='cleaningFee'>
-            <div className={(cleaningFee > 0) ? 'maidContainer selected' : 'maidContainer'}>
+            <div className={(cleaningFee > 0) ? 'maidContainer icon selected' : 'maidContainer icon'}>
               <CleaningFee />
             </div>
             <input className="cleaningFeeContainer"
@@ -137,8 +138,17 @@ const RentalEvaluationForm = () => {
             </input>
           </div>
         </div>
-        <div className='securityDeposit'>
-        <SecurityDeposit />
+        {/* security deposit */}
+        <div className='securityDepositContainer'>
+          <div className='securityDepositIcon icon'>
+              <SecurityDeposit />
+          </div>
+          <input className="securityDeposit"
+            type='number' min="0.00" step="0.01" max="2500"
+            placeholder="Security Deposit"
+            value={securityDeposit}
+            onChange={handleSecurityDeposit}>
+          </input>
         </div>
       </form>
     </div>
@@ -155,13 +165,13 @@ export default RentalEvaluationForm;
 // host_is_superhost - bool - Is the user host a super member?
 // latitude - float/number - 15 decimal places
 // longitude - float/number - 15 decimal places
-                        // property_type - int(1) - 0 = Guesthouse, 1 = Apartment, 2 = Condo, 3 = House, 4 = Other
+                       // property_type - int(1) - 0 = Guesthouse, 1 = Apartment, 2 = Condo, 3 = House, 4 = Other
 // room_type - int(1) - 0 = Private Room, 1 = Entire House, 2 = Other
-                      // accomodates - int(1) <= 6 - How many people can it handle? 
-                      // bathrooms - int(1) <= 5 - How many bathrooms?
-                      // bedrooms - float/number(2) <= 5 - How many bedrooms?
+                       // accomodates - int(1) <= 6 - How many people can it handle? 
+                       // bathrooms - int(1) <= 5 - How many bathrooms?
+                       // bedrooms - float/number(2) <= 5 - How many bedrooms?
 // beds - int(1) <= 5 - How many beds are available?
-// security_deposit - float/number(2 decimal places) - If there is a security deposit, how much? If none, 0.00
+                       // security_deposit - float/number(2 decimal places) - If there is a security deposit, how much? If none, 0.00
                        // cleaning_fee - float/number(2 decimal places) - If there is a cleaning fee, how much? If none, 0.00
                        // extra_people - float/number(2 decimal places) - Is there a fee for guests?
                        // minimum_nights - int(4) <= 1255 - Minimum time a guest **has** to stay
