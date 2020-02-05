@@ -21,7 +21,7 @@
 }
 
 .rentalEvaluationContainer h1, .rentalEvaluationContainer form {
-    width: 100%;
+    width: 100%;    
 }
 .guestCount, .propertyTypes, .cancellationPolicies {
     width:100%;
@@ -54,7 +54,27 @@
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
+.wizardNav {
+    display:flex;
+    margin: 10px;
+}
+
+.wizardNav button {    
+    margin-left: 60px;
+    margin-right: 60px;
+}
+.wizardNav button:disabled {
+    background-color:darkgray;
+    border: 1px darkgray;
+}
+.wizardSection {
+    min-height: 200px;
+}
+
+.instructions {
+    display: block;
+}
 
