@@ -24,7 +24,6 @@ function App() {
   return (
     <Router>
       <div className="App">
-       <h1>Hello</h1>
         <Router exact path="/register">
             <RegisterLogin />
         </Router>
