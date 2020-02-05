@@ -21,6 +21,7 @@ const RentalEvaluationForm = () => {
   const [stepCount, setStepCount] = useState(1);
   const [guestCount, setGuestCount] = useState(1);
   const [propertyType, setPropertyType] = useState(1);
+  const [roomType, setRoomType] = useState(0)
   const [extraGuestFee, setExtraGuestFee] = useState(0);
   const [cancellationPolicy, setCancellationPolicy] = useState(0);
   const [bathroomCount, setBathroomCount] = useState(1);
@@ -49,6 +50,9 @@ const RentalEvaluationForm = () => {
   }
   const handleOnclickPropertyType = (newval) => {
     setPropertyType(newval);
+  }
+  const handleOnclickRoomType = (newval) => {
+    setRoomType(newval);
   }
   const handleExtraGuestFee = (e) => {
     setExtraGuestFee(e.target.value);
@@ -98,29 +102,15 @@ const RentalEvaluationForm = () => {
       minimum_nights: 1,
       property_type: 1,
       availability_365: 1
+    }
   }
-}
+  const getTestResponseArray = () => {
+    return [getTestResponseData(),getTestResponseData()];
+  }
   const getPostableData = () => {
-    // country: STRING,
-    // zip: STRING,
-    // street_addr: STRING,
-    // long: INTEGER,
-    // lat: INTEGER,
-    // room_type: INTEGER,
-    // accomodates: INTEGER,
-    // bathrooms: FLOAT,
-    // bedrooms: INTEGER,
-    // beds: INTEGER,
-    // security_deposit: FLOAT,
-    // cleaning_fee: FLOAT,
-    // extra_people: FLOAT,
-    // cancellation_policy: INTEGER,
-    // price: INTEGER,
-    // minimum_nights: INTEGER,
-    // property_type: INTEGER,
-    // availability_365: INTEGER,
     return {
       "country": "Germany",
+      "room_type": roomType,
       "accomodates": guestCount,
       "property_type": propertyType,
       "extra_people": extraGuestFee,
@@ -130,7 +120,8 @@ const RentalEvaluationForm = () => {
       "cleaning_fee": cleaningFee,
       "security_deposit": securityDeposit,
       "street_addr": address,
-      "bedrooms": bedroomCount
+      "bedrooms": bedroomCount,
+      "beds": totalBedsCount
     }
   }
   const submitProperty = () => {
@@ -180,12 +171,12 @@ const RentalEvaluationForm = () => {
           <div onClick={() => { handleOnclickBedroom(0) }} className={(bedroomCount == 0) ? 'bedroomIcon selected icon' : 'bedroomIcon icon'}>
             <NoBedIcon />
           </div>
-            <input className="totalBeds"
-              type='number'
-              placeholder="Number of Beds"
-              value={totalBedsCount}
-              onChange={handleTotalBeds}>
-            </input>
+          <input className="totalBeds"
+            type='number'
+            placeholder="Number of Beds"
+            value={totalBedsCount}
+            onChange={handleTotalBeds}>
+          </input>
           {[1, 2, 3, 4, 5].map(elem => <div onClick={() => { handleOnclickBedroom(elem) }} className={(bedroomCount > elem - 1) ? 'bedroomIcon icon selected' : 'bedroomIcon icon'}>
             <BedIcon />
           </div>)}
@@ -252,8 +243,8 @@ const RentalEvaluationForm = () => {
         </div>
       </form>
     </div>
-    <div className='rentalPrediction'>
-      <RentalPrediction rentalData={getTestResponseData()} />
+    <div className='rentalPredictions'>
+      {getTestResponseArray().map(e => (<RentalPrediction rentalData = {e} />))}
     </div>
   </div>
 }
