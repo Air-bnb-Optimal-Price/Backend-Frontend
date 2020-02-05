@@ -19,6 +19,7 @@ function Register() {
         password2: ''
     });
     const [error, setError] = useState("");
+    const [passwordError, setPasswordError] = useState("")
     const history = useHistory()
 
     // const handleSubmit = async e => {
@@ -47,7 +48,11 @@ function Register() {
         event.preventDefault()
 
         if(register.password !== register.password2) {
-                    console.log("Passwords do not match!");
+            setPasswordError("Passwords do not match");
+            setTimeout(()=> {
+                setPasswordError("");
+            }, 2000)
+                    
                 }  else {
 
                     Axios.post("/user/register", { username: register.username, password: register.password })
@@ -109,6 +114,7 @@ function Register() {
                             placeholder="Enter Password"
                             autoComplete="off"
                         />
+                        <span className="error-text">{passwordError}</span>
                     </div>
                     <div className="input-container">
                         <label htmlFor="passwordConfirm">Confirm Password</label>
@@ -121,6 +127,7 @@ function Register() {
                             placeholder="Enter Password again"
                             autoComplete="off"
                         />
+                         <span className="error-text">{passwordError}</span>
                     </div>
                      
                     <button type="submit">Register</button>

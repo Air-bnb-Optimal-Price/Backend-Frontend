@@ -80,6 +80,7 @@ button:hover {
  .error-text {
      position: relative;
      top: -14px;
-     font-size: 0.9rem;
+     font-size: 0.8rem;
      color: red;
+     letter-spacing: 0.02rem;
  }
