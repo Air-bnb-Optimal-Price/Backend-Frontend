@@ -76,3 +76,10 @@ button:hover {
  .link {
      width: 100%;
  }
+
+ .error-text {
+     position: relative;
+     top: -14px;
+     font-size: 0.9rem;
+     color: red;
+ }
