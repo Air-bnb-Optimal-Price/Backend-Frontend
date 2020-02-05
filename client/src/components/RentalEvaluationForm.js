@@ -146,7 +146,7 @@ const RentalEvaluationForm = () => {
         <div className='wizardSection'>
           {/* Number of guests */}
           <div className={(stepCount == 1) ? 'guestCount wizardSection' : 'guestCount wizardSection hidden'}>
-            <div className='instructions'>Select the number of guests your property can accomodate and add the fee per extra guest...</div>
+            <div className='instructions'>Select the number of guests your property can accommodate and add the fee per extra guest...</div>
             {[0, 1, 2, 3, 4, 5].map(elem => <div onClick={() => { handleOnclickIcon(elem + 1) }} className={(guestCount > elem) ? 'guestIcon icon selected' : 'guestIcon icon'}>
               <ManIcon />
             </div>)}
@@ -253,7 +253,7 @@ const RentalEvaluationForm = () => {
       </form>
     </div>
     <div className='rentalPrediction'>
-      <RentalPrediction predictedPrice={predictedPrice} />
+      <RentalPrediction rentalData={getTestResponseData()} />
     </div>
   </div>
 }
