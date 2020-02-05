@@ -1,10 +1,17 @@
 import React from 'react';
 import './Register.css';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { withFormik, Form, Field } from 'formik';
 
+/**
+ * gideon: please read through this and notice the logic. 
+ * The login component will be similar, but with slightly different logic.
+ * We are only using two state fields - register, and error. 
+ * We don't need second password, for now we can get rid of it.
+ * 
+ */
 function Register() {
     const [register, setRegister] = useState({
         username: '',
@@ -12,6 +19,7 @@ function Register() {
         password2: ''
     });
     const [error, setError] = useState("");
+    const history = useHistory()
 
     // const handleSubmit = async e => {
     //     e.preventDefault();
@@ -52,11 +60,12 @@ function Register() {
         Axios.post("/user/register", { username: register.username, password: register.password })
             .then((res) => {
                 console.log(res.data)
+                history.push('/login') // if and only if no error, we redirect to login
             })
             .catch(e => {
                 console.log(JSON.stringify(e.response, 0, 2))
                 setError(e.response.data.msg)
-
+                // if error, we show error message for 3 seconds
                 setTimeout(() => {
                     setError("")
                 }, 3000)
