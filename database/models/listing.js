@@ -1,11 +1,12 @@
 'use strict';
 module.exports = (sequelize, { STRING, INTEGER, FLOAT }) => {
   const Listing = sequelize.define('Listing', {
+    userID: INTEGER,
     country: STRING,
     zip: STRING,
     street_addr: STRING,
-    long: INTEGER,
-    lat: INTEGER,
+    longitude: INTEGER,
+    latitude: INTEGER,
     room_type: INTEGER,
     accomodates: INTEGER,
     bathrooms: FLOAT,
@@ -18,14 +19,7 @@ module.exports = (sequelize, { STRING, INTEGER, FLOAT }) => {
     price: INTEGER,
     minimum_nights: INTEGER,
     property_type: INTEGER,
-    availability_365: INTEGER,
-
   }, {});
-  Listing.associate = function (models) {
-    Listing.belongsTo(models.User, {
-      as: 'host',
-      onDelete: 'CASCADE'
-    })
-  };
+
   return Listing;
 };
