@@ -11,7 +11,7 @@ function Register() {
         password: '',
         password2: ''
     });
-    const [newUser, setNewUser] = useState(register);
+    const [error, setError] = useState("");
 
     // const handleSubmit = async e => {
     //     e.preventDefault();
@@ -48,15 +48,27 @@ function Register() {
         //     password2: register.password2
         // })
         event.preventDefault()
-        Axios.post("/user/register", { username: register.username, password: register.password }).then((res) => {
-            console.log(res.data)
-        })
-        // console.log(newUser);
+
+        Axios.post("/user/register", { username: register.username, password: register.password })
+            .then((res) => {
+                console.log(res.data)
+            })
+            .catch(e => {
+                console.log(JSON.stringify(e.response, 0, 2))
+                setError(e.response.data.msg)
+
+                setTimeout(() => {
+                    setError("")
+                }, 3000)
+            })
     }
-    useEffect(() => {
+
+    // console.log(newUser);
+
+    // useEffect(() => {
 
 
-    }, [])
+    // }, [])
 
     const handleInput = e => {
         setRegister({
@@ -107,8 +119,7 @@ function Register() {
                             autoComplete="off"
                         />
                     </div>
-
-
+                     <p className="error-text">{error}</p>
                     <button type="submit">Register</button>
                     <div className="input-container link">
                         <p>Already Signed Up?</p><Link to="/login">Login</Link>
