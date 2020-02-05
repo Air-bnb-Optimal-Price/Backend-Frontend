@@ -6,12 +6,12 @@ import Axios from 'axios';
 import { withFormik, Form, Field } from 'formik';
 
 function Register() {
-const [register, setRegister] = useState({
+    const [register, setRegister] = useState({
         username: '',
         password: '',
         password2: ''
-});
-const [newUser, setNewUser] = useState(register);
+    });
+    const [newUser, setNewUser] = useState(register);
 
     // const handleSubmit = async e => {
     //     e.preventDefault();
@@ -40,75 +40,76 @@ const [newUser, setNewUser] = useState(register);
     //         }
     //     } 
     // }  
- const handleSubmit = () => {
-    setNewUser({
-        ...register,
-        username: register.username,
-        password: register.password,
-        password2: register.password2
-    })
-
-    console.log(newUser);
- }
+    const handleSubmit = event => {
+        // setNewUser({
+        //     ...register,
+        //     username: register.username,
+        //     password: register.password,
+        //     password2: register.password2
+        // })
+        event.preventDefault()
+        Axios.post("/user/register", { username: register.username, password: register.password }).then((res) => {
+            console.log(res.data)
+        })
+        // console.log(newUser);
+    }
     useEffect(() => {
-       
-    Axios.post("/user/register", newUser).then((res) => {
-        console.log(res)
-    })
-}, [])
-    
-const handleInput = e => {
-    setRegister({
-        ...register,
-        [e.target.name]: e.target.value
-    });
-}
+
+
+    }, [])
+
+    const handleInput = e => {
+        setRegister({
+            ...register,
+            [e.target.name]: e.target.value
+        });
+    }
 
     return (
-        <div onSubmit={handleSubmit} className="register-container">
-            <form className="form">
+        <div className="register-container">
+            <form onSubmit={handleSubmit} className="form">
                 <div className="input-wrapper">
                     <h2>Register</h2>
                     <div className="input-container">
                         <label htmlFor="user">Username</label>
-                        <input 
-                            id="user" 
-                            type='text' 
+                        <input
+                            id="user"
+                            type='text'
                             onChange={handleInput}
-                            name="username" 
-                            value={register.username} 
-                            placeholder="Enter Username" 
+                            name="username"
+                            value={register.username}
+                            placeholder="Enter Username"
                             autoComplete="off"
                         />
                     </div>
 
                     <div className="input-container">
                         <label htmlFor="password">Password</label>
-                        <input 
-                            id="password" 
-                            type='password' 
+                        <input
+                            id="password"
+                            type='password'
                             onChange={handleInput}
-                            name="password" 
-                            value={register.password} 
+                            name="password"
+                            value={register.password}
                             placeholder="Enter Password"
                             autoComplete="off"
-                        /> 
+                        />
                     </div>
                     <div className="input-container">
                         <label htmlFor="passwordConfirm">Confirm Password</label>
-                        <input 
-                            id="passwordComfirm" 
-                            type='password' 
+                        <input
+                            id="passwordComfirm"
+                            type='password'
                             onChange={handleInput}
-                            name="password2" 
+                            name="password2"
                             value={register.password2}
                             placeholder="Enter Password again"
                             autoComplete="off"
-                        /> 
+                        />
                     </div>
-                    
-                
-                    <button type="submit">Register</button> 
+
+
+                    <button type="submit">Register</button>
                     <div className="input-container link">
                         <p>Already Signed Up?</p><Link to="/login">Login</Link>
                     </div>

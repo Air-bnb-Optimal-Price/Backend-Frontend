@@ -1,6 +1,7 @@
 const { userExists, encryptPassword, saveUser } = require('../services');
 
 module.exports = async function (req, res, next) {
+    console.log('registerBody', req.body)
     const { username, password } = req.body;
     try {
         let existence = await userExists(username);
