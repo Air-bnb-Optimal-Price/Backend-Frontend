@@ -19,6 +19,7 @@ function Register() {
         password2: ''
     });
     const [error, setError] = useState("");
+    const [passwordError, setPasswordError] = useState("")
     const history = useHistory()
 
     // const handleSubmit = async e => {
@@ -26,18 +27,13 @@ function Register() {
     //     if(register.password !== register.password2) {
     //         console.log("Passwords do not match!");
     //     } else {
-    //         const newUser = {
-    //             username: e.target.value,
-    //             password: e.target.value,
-    //             password2: e.target.value
-    //         }
+            
     //         try {
     //             const config = {
     //                 headers: {
     //                     'Content-Type': 'application/json'
     //                 }
     //             }
-    //         const body = JSON.stringify(newUser);
     //         const res = await Axios.post('/user/register', body, config)
     //             await res.then(res => {
     //                 console.log(res);
@@ -49,15 +45,17 @@ function Register() {
     //     } 
     // }  
     const handleSubmit = event => {
-        // setNewUser({
-        //     ...register,
-        //     username: register.username,
-        //     password: register.password,
-        //     password2: register.password2
-        // })
         event.preventDefault()
 
-        Axios.post("/user/register", { username: register.username, password: register.password })
+        if(register.password !== register.password2) {
+            setPasswordError("Passwords do not match");
+            setTimeout(()=> {
+                setPasswordError("");
+            }, 2000)
+                    
+                }  else {
+
+                    Axios.post("/user/register", { username: register.username, password: register.password })
             .then((res) => {
                 console.log(res.data)
                 history.push('/login') // if and only if no error, we redirect to login
@@ -71,13 +69,13 @@ function Register() {
                 }, 3000)
             })
     }
+    // setRegister({
+    //     username: '',
+    //     password: '',
+    //     password2: ''
+    // })
 
-    // console.log(newUser);
-
-    // useEffect(() => {
-
-
-    // }, [])
+}
 
     const handleInput = e => {
         setRegister({
@@ -102,6 +100,7 @@ function Register() {
                             placeholder="Enter Username"
                             autoComplete="off"
                         />
+                        <span className="error-text">{error}</span>
                     </div>
 
                     <div className="input-container">
@@ -115,6 +114,7 @@ function Register() {
                             placeholder="Enter Password"
                             autoComplete="off"
                         />
+                        <span className="error-text">{passwordError}</span>
                     </div>
                     <div className="input-container">
                         <label htmlFor="passwordConfirm">Confirm Password</label>
@@ -127,8 +127,9 @@ function Register() {
                             placeholder="Enter Password again"
                             autoComplete="off"
                         />
+                         <span className="error-text">{passwordError}</span>
                     </div>
-                     <p className="error-text">{error}</p>
+                     
                     <button type="submit">Register</button>
                     <div className="input-container link">
                         <p>Already Signed Up?</p><Link to="/login">Login</Link>

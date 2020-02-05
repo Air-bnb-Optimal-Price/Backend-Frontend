@@ -35,7 +35,7 @@ input {
     padding-left: 14px;
     margin-bottom: 18px;
     border-radius: 5px;
-    border: 2px solid #edededc4;
+    border: 1px solid rgb(212, 210, 209);
     outline: none;
     color: gray;
     font-size: 1rem;
@@ -76,3 +76,11 @@ button:hover {
  .link {
      width: 100%;
  }
+
+ .error-text {
+    position: relative;
+    top: -14px;
+    font-size: 0.8rem;
+    color: red;
+    letter-spacing: 0.02rem;
+}
