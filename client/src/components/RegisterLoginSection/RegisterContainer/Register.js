@@ -88,7 +88,7 @@ function Register() {
         <div className="register-container">
             <form onSubmit={handleSubmit} className="form">
                 <div className="input-wrap">
-                    <h2 className="register">Register</h2>
+                    <h2 className="register">Sign Up</h2>
                     <div className="input-container">
                         <label htmlFor="user" className="label">Username</label>
                         <input
