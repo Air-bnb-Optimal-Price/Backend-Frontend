@@ -50,10 +50,10 @@ function Login(props) {
 
     return (
         <div className="login-container">
-            <form onSubmit={handleSubmit}>
-                <div className="input-wrapper">
-                    <h2>Login</h2>
-                    <div className="input-container">
+            <form onSubmit={handleSubmit} className="form2">
+                <div className="input-wrap2">
+                    <h2 className="login">Login</h2>
+                    <div className="input-container2">
                         <label htmlFor="user">Username</label>
                         <input
                             id="user"
