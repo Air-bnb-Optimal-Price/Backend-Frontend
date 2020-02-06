@@ -1,12 +1,12 @@
 'use strict';
 module.exports = (sequelize, { STRING, INTEGER, FLOAT }) => {
   const Listing = sequelize.define('Listing', {
-    userID: INTEGER,
+    user_id: INTEGER,
     country: STRING,
     zip: STRING,
     street_addr: STRING,
-    longitude: INTEGER,
-    latitude: INTEGER,
+    longitude: FLOAT,
+    latitude: FLOAT,
     room_type: INTEGER,
     accommodates: INTEGER,
     bathrooms: FLOAT,

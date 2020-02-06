@@ -1,4 +1,9 @@
-const NodeGeocoder = require('node-geocoder')
+// const NodeGeocoder = require('node-geocoder')
+const googleMapsClient = require('@google/maps').createClient({
+    key: process.env.LALA,
+    Promise: Promise
+});
+
 const axios = require('axios')
 
 const saveListing = ListingModel => async (listing, userID, latitude, longitude) => {
@@ -6,12 +11,12 @@ const saveListing = ListingModel => async (listing, userID, latitude, longitude)
 
     try {
         NewListing = await ListingModel.create({
-            userID,
+            user_id: userID,
             latitude,
             longitude,
             ...listing
         })
-        console.log(newListing)
+        console.log('NewListing', NewListing)
     } catch (e) {
         console.log(e)
     }
@@ -30,44 +35,65 @@ const getListings = ListingModel => async userID => {
     return Listings
 }
 
-const geoCoder = address => {
-    const options = {
-        provider: 'google',
+const geoCoder = async address => {
+    try {
+        const res = await googleMapsClient.geocode(
+            { address: 'Wilmersdorfer Str. 148, 10585 Berlin, Germany' }
+        ).asPromise()
 
-        // Optional depending on the providers
-        httpAdapter: 'https', // Default
-        formatter: null         // 'gpx', 'string', ...
-    };
-    const geoCoder = NodeGeocoder(options)
-    let code;
-    geoCoder.geocode(address, function (err, res) {
-        console.log(res);
-        code = res[0]
-        if (err) {
-            console.log(err)
+        const code = res.json.results[0].geometry.location
+
+        return {
+            latitude: code.lat,
+            longitude: code.lng
         }
-    });
-
-    return {
-        latitude: code.latitude,
-        longitude: code.longitude
+    }
+    catch (e) {
+        console.log(e)
     }
 }
 
 const getPrice = async (listing) => {
-    let price;
+    // listing.userID = 1
+    listing.dataValues.summary = ""
+    console.log('bbb', listing.dataValues)
     try {
-        price = await axios.post('http://python.foodsquadapp.com/', listing)
-        console.log('price', price)
-    } catch(e){
+        const { data } = await axios.post(
+            'http://python.foodsquadapp.com/predict',
+            listing.dataVaues,
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+        console.log('nnn', data)
+        return data.meta.listing_prediction
+    } catch (e) {
+        console.log('mmm', e)
+    }
+    return listing_prediction
+}
+
+const setPrice = ListingModel => async (id, price) => {
+    try {
+        const listing = await ListingModel.findOne({
+            where: { id }
+        })
+
+        listing.price = price
+
+        const pricedListing = await listing.save()
+
+        return pricedListing
+    } catch (e) {
         console.log(e)
     }
-    return price[0].listing_prediction
 }
 
 module.exports = ListingModel => ({
     saveListing: saveListing(ListingModel),
     getListings: getListings(ListingModel),
+    setPrice: setPrice(ListingModel),
     geoCoder,
     getPrice
 });

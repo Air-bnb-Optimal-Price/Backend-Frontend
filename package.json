@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Air-bnb-Optimal-Price/Backend-Frontend#readme",
   "devDependencies": {},
   "dependencies": {
+    "@google/maps": "^1.1.0",
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
