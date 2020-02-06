@@ -147,14 +147,7 @@ function Register() {
     );
 }
 
-// const FormikRegister = withFormik({
-//     mapPropsToValues(props){
-//         return {
-//             username: props.user
-//         }
-//     }
 
-// })(Register);
 
 export default Register;
 
