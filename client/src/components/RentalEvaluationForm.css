@@ -75,24 +75,19 @@
     flex-wrap: wrap;
     min-height: 200px;
 }
-
 .instructions {
     font-size: 2em;
 }
-
-.extraGuestFee {
+.extraGuestFee, .cleaningFee {
     max-height: 25px;
 }
-
 .totalBeds {
     align-self: flex-end;
     max-height: 25px;
 }
-
 .roomType {
     display: flex;
 }
-
 .propertyTypes {
     display: flex;
     flex-wrap: wrap;

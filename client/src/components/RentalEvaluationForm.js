@@ -36,16 +36,15 @@ const RentalEvaluationForm = () => {
 
   const handleStepIncrement = () => {
     setStepCount(Math.min(8, stepCount + 1));
-    if (stepCount === 8) {
-      submitProperty();
-      console.log(guestCount, propertyType, roomType, extraGuestFee, cancellationPolicy, bathroomCount, bedroomCount, totalBedsCount, nightStayCount, cleaningFee, securityDeposit, address);
-    }
   }
   const handleStepDecrement = () => {
     setStepCount(Math.max(1, stepCount - 1));
   }
   const handleSubmit = (event) => {
     event.preventDefault();
+    submitProperty();
+    console.log(getPostableData());
+    console.log(guestCount, propertyType, roomType, extraGuestFee, cancellationPolicy, bathroomCount, bedroomCount, totalBedsCount, nightStayCount, cleaningFee, securityDeposit, address);
   }
   const handleOnclickIcon = (newval) => {
     setGuestCount(newval);
@@ -113,7 +112,7 @@ const RentalEvaluationForm = () => {
     return {
       "country": "Germany",
       "room_type": roomType,
-      "accomodates": guestCount,
+      "accommodates": guestCount,
       "property_type": propertyType,
       "extra_people": extraGuestFee,
       "cancellation_policy": cancellationPolicy,
@@ -161,7 +160,7 @@ const RentalEvaluationForm = () => {
         <div className={(stepCount === 2) ? 'nightStayCount wizardSection' : 'nightStayCount wizardSection hidden'}>
           <div className='instructions'>Add the minimum number of nights required to rent your property...</div>
           {[0, 1, 2, 3, 4, 5].map(elem => <div onClick={() => { handleOnclickNightStay(elem + 1) }} className={(nightStayCount > elem) ? 'nightsIcon icon selected' : 'nightsIcon icon'}>
-            <MoonIcon />
+            <MoonIcon key={elem}/>
           </div>)}
           <div onClick={() => { handleOnclickNightStay(7) }} className={(nightStayCount > 6) ? 'nightsIcon icon selected' : 'nightsIcon icon'}>
             <PlusIcon />
@@ -250,12 +249,12 @@ const RentalEvaluationForm = () => {
         </div>
         <div className='wizardNav'>
           <button disabled={(stepCount === 1) ? "disabled" : ""} onClick={() => { handleStepDecrement() }} >Previous</button>
-          <button disabled={(stepCount === 7) ? "disabled" : ""} onClick={() => { handleStepIncrement() }} >Next</button>
-          <input className='submitButton'
+          <button disabled={(stepCount === 8) ? "disabled" : ""} onClick={() => { handleStepIncrement() }} >Next</button>
+          {/* <input className='submitButton'
             type='submit' 
             value='Submit'
              onSubmit={handleSubmit} >
-            </input>
+            </input> */}
         </div>
       </form>
     </div>
@@ -275,14 +274,14 @@ export default RentalEvaluationForm;
     // host_is_superhost - bool - Is the user host a super member?
     // latitude - float/number - 15 decimal places
     // longitude - float/number - 15 decimal places
-                           // property_type - int(1) - 0 = Guesthouse, 1 = Apartment, 2 = Condo, 3 = House, 4 = Other
-    // room_type - int(1) - 0 = Private Room, 1 = Entire House, 2 = Other
-                       // accomodates - int(1) <= 6 - How many people can it handle? 
-                       // bathrooms - int(1) <= 5 - How many bathrooms?
-                       // bedrooms - float/number(2) <= 5 - How many bedrooms?
-// beds - int(1) <= 5 - How many beds are available?
-                           // security_deposit - float/number(2 decimal places) - If there is a security deposit, how much? If none, 0.00
-                           // cleaning_fee - float/number(2 decimal places) - If there is a cleaning fee, how much? If none, 0.00
-                           // extra_people - float/number(2 decimal places) - Is there a fee for guests?
-                       // minimum_nights - int(4) <= 1255 - Minimum time a guest **has** to stay
-    // cancellation_policy - int(1) - 0 = 14 day grace period, 1 = flexible, 2 = moderate, 3 = 30 day, 4 = 60 day
+                          // property_type - int(1) - 0 = Guesthouse, 1 = Apartment, 2 = Condo, 3 = House, 4 = Other
+                          // room_type - int(1) - 0 = Private Room, 1 = Entire House, 2 = Other
+                          // accomodates - int(1) <= 6 - How many people can it handle? 
+                          // bathrooms - int(1) <= 5 - How many bathrooms?
+                          // bedrooms - float/number(2) <= 5 - How many bedrooms?
+                          // beds - int(1) <= 5 - How many beds are available?
+                          // security_deposit - float/number(2 decimal places) - If there is a security deposit, how much? If none, 0.00
+                          // cleaning_fee - float/number(2 decimal places) - If there is a cleaning fee, how much? If none, 0.00
+                          // extra_people - float/number(2 decimal places) - Is there a fee for guests?
+                          // minimum_nights - int(4) <= 1255 - Minimum time a guest **has** to stay
+                          // cancellation_policy - int(1) - 0 = 14 day grace period, 1 = flexible, 2 = moderate, 3 = 30 day, 4 = 60 day
