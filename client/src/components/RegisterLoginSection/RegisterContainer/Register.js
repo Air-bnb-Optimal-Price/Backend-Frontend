@@ -48,10 +48,13 @@ function Register() {
         event.preventDefault()
 
         if(register.password !== register.password2) {
-            setPasswordError("Passwords do not match!");
+            
+            setTimeout(()=> {
+                setPasswordError("Passwords do not match!");
+            }, 2000)
             setTimeout(()=> {
                 setPasswordError("");
-            }, 3000)
+            }, 7000)
                     
                 }  else {
 

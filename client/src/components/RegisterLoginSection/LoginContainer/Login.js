@@ -56,7 +56,7 @@ function Login(props) {
                     <div className="input-container2">
                         <label htmlFor="user" className="label2">Username</label>
                         <input
-                        className="input2"
+                            className="input2"
                             id="user"
                             type='text'
                             onChange={handleInput}

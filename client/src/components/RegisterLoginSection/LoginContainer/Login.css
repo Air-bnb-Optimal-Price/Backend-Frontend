@@ -56,11 +56,11 @@
     border-radius: 2px;
     border: 1px solid lightblue;
     outline: none;
-    color: rgb(216, 215, 215);
+    color: rgb(182, 179, 179);
     font-size: 1rem;
 }
 ::placeholder {
-    color: rgb(218, 216, 216);
+    color: rgb(189, 188, 188);
     font-size: 0.9rem;
 }
 .label2 {
@@ -77,6 +77,7 @@
     font-size: 1.2rem;
     border-radius: 20px;
     background-color: rgb(112, 182, 206);
+    background-color: rgb(138, 194, 212);
     outline: none;
     border: 1px solid lightblue;
     margin-top: 14px;
@@ -85,7 +86,8 @@
     /* margin-left: 35px; */
 }
 .button2:hover {
-    background-color: rgb(138, 194, 212);
+    
+    background-color: rgb(112, 182, 206);
 }
  a {
      text-decoration: none;
