@@ -52,10 +52,11 @@ function Login(props) {
         <div className="login-container">
             <form onSubmit={handleSubmit} className="form2">
                 <div className="input-wrap2">
-                    <h2 className="login">Login</h2>
+                    <h2 className="login">Sign In</h2>
                     <div className="input-container2">
-                        <label htmlFor="user">Username</label>
+                        <label htmlFor="user" className="label2">Username</label>
                         <input
+                        className="input2"
                             id="user"
                             type='text'
                             onChange={handleInput}
@@ -68,8 +69,9 @@ function Login(props) {
                     </div>
 
                     <div className="input-container">
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="password" className="label2">Password</label>
                         <input
+                            className="input2"
                             id="password"
                             type='password'
                             onChange={handleInput}
@@ -78,12 +80,12 @@ function Login(props) {
                             placeholder="Enter Password"
                             autoComplete="off"
                         />
-                        <span className="error-text">{error}</span>
+                        <span className="error-text2">{error}</span>
                     </div>
                     
-                    <button type="submit">Login</button> 
-                    <div className="input-container link">
-                        <p>Not Signed Up?</p><Link to="/register">Register</Link>
+                    <button type="submit" className="button2">Login</button> 
+                    <div className="link-cont2">
+                        <p className="para2">Not Signed Up?</p><Link to="/register" className="link2">Register</Link>
                     </div>
                 </div>
             </form>
