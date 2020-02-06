@@ -35,7 +35,7 @@ const RentalEvaluationForm = () => {
   const [address, setAddress] = useState();
 
   const handleStepIncrement = () => {
-    setStepCount(Math.min(8, stepCount + 1));
+    setStepCount(Math.min(9, stepCount + 1));
   }
   const handleStepDecrement = () => {
     setStepCount(Math.max(1, stepCount - 1));
@@ -111,6 +111,7 @@ const RentalEvaluationForm = () => {
   const getPostableData = () => {
     return {
       "country": "Germany",
+      "street_addr": address,
       "room_type": roomType,
       "accommodates": guestCount,
       "property_type": propertyType,
@@ -160,7 +161,7 @@ const RentalEvaluationForm = () => {
         <div className={(stepCount === 2) ? 'nightStayCount wizardSection' : 'nightStayCount wizardSection hidden'}>
           <div className='instructions'>Add the minimum number of nights required to rent your property...</div>
           {[0, 1, 2, 3, 4, 5].map(elem => <div onClick={() => { handleOnclickNightStay(elem + 1) }} className={(nightStayCount > elem) ? 'nightsIcon icon selected' : 'nightsIcon icon'}>
-            <MoonIcon key={elem}/>
+            <MoonIcon key={elem} />
           </div>)}
           <div onClick={() => { handleOnclickNightStay(7) }} className={(nightStayCount > 6) ? 'nightsIcon icon selected' : 'nightsIcon icon'}>
             <PlusIcon />
@@ -247,9 +248,21 @@ const RentalEvaluationForm = () => {
             onChange={handleSecurityDeposit}>
           </input>
         </div>
+        <div className={(stepCount === 9) ? 'streetAddressContainer wizardSection' : 'streetAddressContainer wizardSection hidden'}>
+          <div className='instructions'>What is the address of your property?</div>
+          <div className='addressIcon'>
+            {/* <AddressIcon /> */}
+          </div>
+          <input className='streetAddress'
+            type='text'
+            placeholder='Street Address'
+            value={address}
+            onChange={handleAddressChange}>
+          </input>
+        </div>
         <div className='wizardNav'>
           <button disabled={(stepCount === 1) ? "disabled" : ""} onClick={() => { handleStepDecrement() }} >Previous</button>
-          <button disabled={(stepCount === 8) ? "disabled" : ""} onClick={() => { handleStepIncrement() }} >Next</button>
+          <button disabled={(stepCount === 9) ? "disabled" : ""} onClick={() => { handleStepIncrement() }} >Next</button>
           {/* <input className='submitButton'
             type='submit' 
             value='Submit'
