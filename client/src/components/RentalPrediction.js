@@ -28,8 +28,14 @@ const RentalPrediction = (props) => {
         <div className='roomType'>
             Room Type: {translatedRentalData.room_type}
         </div>
+        <div className='propertyType'>
+            Property Type: {translatedRentalData.property_type}
+        </div>
         <div className='numberOfGuests'>
             Number of Guests: {translatedRentalData.accommodates}
+        </div>
+        <div className='minimumNights'>
+            Minimum Nights Stay: {translatedRentalData.minimum_nights}
         </div>
         <div className='bathrooms'>
             Number of Bathrooms: {translatedRentalData.bathrooms}
@@ -47,16 +53,10 @@ const RentalPrediction = (props) => {
             Amount of Cleaning Fee: {translatedRentalData.cleaning_fee}
         </div>
         <div className='extraPeople'>
-            Amount of Extra Person Fee: {translatedRentalData.extra_people}
+            Amount of Extra Person fee: {translatedRentalData.extra_people}
         </div>
         <div className='cancellationPolicy'>
             Cancellation Policy: {translatedRentalData.cancellation_policy}
-        </div>
-        <div className='minimumNights'>
-            Minimum Nights Stay: {translatedRentalData.minimum_nights}
-        </div>
-        <div className='propertyType'>
-            Property Type: {translatedRentalData.property_type}
         </div>
 
     </div>

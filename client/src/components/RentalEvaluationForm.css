@@ -80,4 +80,21 @@
     font-size: 2em;
 }
 
+.extraGuestFee {
+    max-height: 25px;
+}
+
+.totalBeds {
+    align-self: flex-end;
+    max-height: 25px;
+}
+
+.roomType {
+    display: flex;
+}
+
+.propertyTypes {
+    display: flex;
+    flex-wrap: wrap;
+}
 
