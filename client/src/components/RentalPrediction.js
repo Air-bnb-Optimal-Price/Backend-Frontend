@@ -8,6 +8,7 @@ const RentalPrediction = (props) => {
     const translatedRentalData = JSON.parse(JSON.stringify(props.rentalData));
     // To easily translate enumerations, we can construct an array of strings, then just select the array element with the given index.
     //0 = Private Room, 1 = Entire House, 2 = Other
+    if (translatedRentalData.street_addr === '1001 Berlin Drive') translatedRentalData.street_addr = '';
     translatedRentalData.room_type = ['Private Room', 'Entire House', 'Other'][translatedRentalData.room_type]
     if (translatedRentalData.accommodates === 0) translatedRentalData.accommodates = '';
     if (translatedRentalData.bathrooms === 0) translatedRentalData.bathrooms = '';
