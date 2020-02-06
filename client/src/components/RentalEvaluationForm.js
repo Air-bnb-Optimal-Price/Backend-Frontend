@@ -16,6 +16,7 @@ import { ReactComponent as Other } from './icons/questionmark.svg';
 import { ReactComponent as Bathrooms } from './icons/toilet.svg';
 import { ReactComponent as CleaningFee } from './icons/cleaning.svg';
 import { ReactComponent as SecurityDeposit } from './icons/bank.svg';
+import { ReactComponent as DoorIcon } from './icons/doorway.svg';
 
 const RentalEvaluationForm = () => {
   const [stepCount, setStepCount] = useState(1);
@@ -105,7 +106,7 @@ const RentalEvaluationForm = () => {
     }
   }
   const getTestResponseArray = () => {
-    return [getTestResponseData(),getTestResponseData()];
+    return [getTestResponseData(), getTestResponseData()];
   }
   const getPostableData = () => {
     return {
@@ -183,7 +184,7 @@ const RentalEvaluationForm = () => {
         </div>
         {/* type of property */}
         <div className={(stepCount == 4) ? 'propertyTypes wizardSection' : 'propertyTypes wizardSection hidden'}>
-          <div className='instructions'>Add the type of property you are renting (ie: guesthouse, apartment, condo, house, or other)</div>
+          <div className='instructions'>What Level of Privacy does the renter enjoy?</div>
           {[1, 2, 3, 4, 5].map(elem => <div
             onClick={() => { handleOnclickPropertyType(elem) }}
             className={(propertyType == elem) ? 'propertyTypeIcon icon selected' : 'propertyTypeIcon icon'}>
@@ -194,6 +195,15 @@ const RentalEvaluationForm = () => {
             {(elem === 5) ? <Other /> : ''}
           </div>
           )}
+          <div className={(stepCount == 4) ? 'roomType' : 'roomTypes hidden'}>
+            {[0, 1, 2].map(elem => <div
+              onClick={() => { handleOnclickRoomType(elem) }}
+              className={(roomType == elem) ? 'roomTypeIcon icon selected' : 'roomTypeIcon icon'}>
+              {(elem === 0) ? <DoorIcon /> : ''}
+              {(elem === 1) ? <GuestHouse /> : ''}
+              {(elem === 2) ? <Other /> : ''}
+            </div>)}
+          </div>
         </div>
         {/* number of bathrooms */}
         <div className={(stepCount == 5) ? 'bathroomCount wizardSection' : 'bathroomCount wizardSection hidden'}>
@@ -244,29 +254,29 @@ const RentalEvaluationForm = () => {
       </form>
     </div>
     <div className='rentalPredictions'>
-      {getTestResponseArray().map(e => (<RentalPrediction rentalData = {e} />))}
+      {getTestResponseArray().map(e => (<RentalPrediction rentalData={e} />))}
     </div>
   </div>
 }
 
 export default RentalEvaluationForm;
 
-// username: value1
-// password: value2
+    // username: value1
+    // password: value2
 
-// id - int(20) - Your DB id for the listing. Will be used to GET data when no changes need to be made
+    // id - int(20) - Your DB id for the listing. Will be used to GET data when no changes need to be made
 // summary - string < 300 - Brief description of the property and keywords ("Great Location!")
-// host_is_superhost - bool - Is the user host a super member?
-// latitude - float/number - 15 decimal places
-// longitude - float/number - 15 decimal places
-                       // property_type - int(1) - 0 = Guesthouse, 1 = Apartment, 2 = Condo, 3 = House, 4 = Other
-// room_type - int(1) - 0 = Private Room, 1 = Entire House, 2 = Other
+    // host_is_superhost - bool - Is the user host a super member?
+    // latitude - float/number - 15 decimal places
+    // longitude - float/number - 15 decimal places
+                           // property_type - int(1) - 0 = Guesthouse, 1 = Apartment, 2 = Condo, 3 = House, 4 = Other
+    // room_type - int(1) - 0 = Private Room, 1 = Entire House, 2 = Other
                        // accomodates - int(1) <= 6 - How many people can it handle? 
                        // bathrooms - int(1) <= 5 - How many bathrooms?
                        // bedrooms - float/number(2) <= 5 - How many bedrooms?
 // beds - int(1) <= 5 - How many beds are available?
-                       // security_deposit - float/number(2 decimal places) - If there is a security deposit, how much? If none, 0.00
-                       // cleaning_fee - float/number(2 decimal places) - If there is a cleaning fee, how much? If none, 0.00
-                       // extra_people - float/number(2 decimal places) - Is there a fee for guests?
+                           // security_deposit - float/number(2 decimal places) - If there is a security deposit, how much? If none, 0.00
+                           // cleaning_fee - float/number(2 decimal places) - If there is a cleaning fee, how much? If none, 0.00
+                           // extra_people - float/number(2 decimal places) - Is there a fee for guests?
                        // minimum_nights - int(4) <= 1255 - Minimum time a guest **has** to stay
-                       // cancellation_policy - int(1) - 0 = 14 day grace period, 1 = flexible, 2 = moderate, 3 = 30 day, 4 = 60 day
+    // cancellation_policy - int(1) - 0 = 14 day grace period, 1 = flexible, 2 = moderate, 3 = 30 day, 4 = 60 day
