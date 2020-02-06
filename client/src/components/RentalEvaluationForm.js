@@ -107,7 +107,7 @@ const RentalEvaluationForm = () => {
     }
   }
   const getTestResponseArray = () => {
-    return [getTestResponseData(), getTestResponseData()];
+    return [getPostableData()];
   }
   const getPostableData = () => {
     return {
