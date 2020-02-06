@@ -85,7 +85,7 @@ function Login(props) {
                     
                     <button type="submit" className="button2">Login</button> 
                     <div className="link-cont2">
-                        <p className="para2">Not Signed Up?</p><Link to="/register" className="link2">Register</Link>
+                        <p className="para2">Not signed up?</p><Link to="/register" className="link2">Register</Link>
                     </div>
                 </div>
             </form>
