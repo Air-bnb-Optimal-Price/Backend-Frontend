@@ -87,11 +87,12 @@ function Register() {
     return (
         <div className="register-container">
             <form onSubmit={handleSubmit} className="form">
-                <div className="input-wrapper">
-                    <h2>Register</h2>
+                <div className="input-wrap">
+                    <h2 className="register">Sign Up</h2>
                     <div className="input-container">
-                        <label htmlFor="user">Username</label>
+                        <label htmlFor="user" className="label">Username</label>
                         <input
+                            className="input"
                             id="user"
                             type='text'
                             onChange={handleInput}
@@ -100,12 +101,13 @@ function Register() {
                             placeholder="Enter Username"
                             autoComplete="off"
                         />
-                        <span className="error-text">{error}</span>
+                        <span className="error-text1">{error}</span>
                     </div>
 
-                    <div className="input-container">
-                        <label htmlFor="password">Password</label>
+                    <div className="input-container" >
+                        <label htmlFor="password" className="label">Password</label>
                         <input
+                            className="input"
                             id="password"
                             type='password'
                             onChange={handleInput}
@@ -114,11 +116,12 @@ function Register() {
                             placeholder="Enter Password"
                             autoComplete="off"
                         />
-                        <span className="error-text">{passwordError}</span>
+                        <span className="error-text1">{passwordError}</span>
                     </div>
-                    <div className="input-container">
-                        <label htmlFor="passwordConfirm">Confirm Password</label>
+                    <div className="input-container" >
+                        <label htmlFor="passwordConfirm" className="label">Confirm Password</label>
                         <input
+                            className="input"
                             id="passwordComfirm"
                             type='password'
                             onChange={handleInput}
@@ -127,12 +130,13 @@ function Register() {
                             placeholder="Enter Password again"
                             autoComplete="off"
                         />
-                         <span className="error-text">{passwordError}</span>
+                         <span className="error-text1">{passwordError}</span>
                     </div>
                      
-                    <button type="submit">Register</button>
-                    <div className="input-container link">
-                        <p>Already Signed Up?</p><Link to="/login">Login</Link>
+                    <button className="button" type="submit">Register</button>
+                    <div className="link-cont">
+                        <p className="para">Already signed up?</p>
+                        <Link to="/login" className="link">Login</Link>
                     </div>
                 </div>
             </form>
