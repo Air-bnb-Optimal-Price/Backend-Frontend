@@ -70,8 +70,9 @@
     border-radius: 5px;
     border: 2px solid rgb(203, 232, 241);
     outline: none;
-    color: grey;
+    color: rgb(92, 92, 92);
     font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
     /* background-color: ; */
 }
 ::placeholder {
