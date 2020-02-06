@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragments} from "react";
 import { useForm } from "react-hook-form";
 import axiosWithAuth from "../auth/axiosWithAuth";
 
@@ -17,7 +17,7 @@ const Login = (props) => {
 
   return (
     <>
-      <h1>Air BnB Price Prediction</h1>
+      <h1>AirBnB Price Prediction</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>
           Username:
