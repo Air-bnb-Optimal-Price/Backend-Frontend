@@ -20,8 +20,9 @@ function Login(props) {
 
         Axios.post("/user/login", { username: login.username, password: login.password })
             .then((res) => {
-                console.log(res.data)
-                history.push('/rentalevaluation') // if and only if no error, we redirect to login
+                console.log('loginRes',res.data)
+                localStorage.setItem("token", res.data.token)
+                history.push('/') // if and only if no error, we redirect to login
             })
             .catch(e => {
                 console.log(JSON.stringify(e.response, 0, 2))

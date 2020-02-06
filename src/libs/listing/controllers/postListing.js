@@ -28,7 +28,7 @@ module.exports = async (req, res, next) => {
 
 
         console.log('savedListing2', savedListing)
-// price does not set
+        // price does not set
         const userListings = await getListings(req.userID)
         console.log(userListings)
 
