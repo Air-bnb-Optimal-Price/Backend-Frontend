@@ -104,6 +104,24 @@ const decodeToken = (token, callback) => {
   }
 }
 
+const changeUserName = UserModel => async (name, id) => {
+  try {
+    const User = await UserModel.findOne({
+      where: {
+        id
+      }
+    })
+
+    User.name = name
+
+    await User.save()
+
+  } catch (e) {
+    console.log(e)
+    throw (e)
+  }
+}
+
 
 module.exports = UserModel => ({
   saveUser: saveUser(UserModel),
@@ -113,6 +131,7 @@ module.exports = UserModel => ({
   getUserByID: getUserByID(UserModel),
   setUserPassword: setUserPassword(UserModel),
   deleteAccount: deleteAccount(UserModel),
+  changeUserName: changeUserName(UserModel),
   encodeToken,
   decodeToken,
 });
