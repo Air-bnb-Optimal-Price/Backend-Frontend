@@ -50,11 +50,11 @@ function Register() {
         if(register.password !== register.password2) {
             
             setTimeout(()=> {
-                setPasswordError("Passwords do not match!");
-            }, 2000)
+                setPasswordError("Passwords do not match");
+            }, 1000)
             setTimeout(()=> {
                 setPasswordError("");
-            }, 7000)
+            }, 5000)
                     
                 }  else {
 
