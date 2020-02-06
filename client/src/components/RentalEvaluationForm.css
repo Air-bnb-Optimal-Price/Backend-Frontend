@@ -1,7 +1,9 @@
 .rentalEvaluationContainer {
     display: flex;
+    flex-direction: column;
     align-items: center;
     padding: 5px;
+    max-width: 85%;
     /* flex-direction: column; */
 }
 
@@ -13,9 +15,9 @@
     border: 1px solid black;
     border-radius: 10px;
     box-shadow: 5px 5px 5px 1px black;
-    background-color: rgb(139, 155, 140);
-    min-width: 600px;
-    min-height: 500px;
+    background-color: rgba(229, 234, 235, 0.89);
+    max-width: 600px;
+    min-height: 640px;
     /* width: 100%; */
     margin: 5px;
 }
@@ -34,7 +36,7 @@
 
 .cancellationPolicy {
     display: inline-block;
-    color:rgb(139, 155, 140);
+    color:rgb(233, 239, 240);
     border: 1px solid black;
     font-size: 0.9em;
 }
@@ -72,6 +74,7 @@
 }
 .wizardSection {
     display: flex;
+    align-items: flex-start;
     flex-wrap: wrap;
     min-height: 200px;
 }
@@ -80,6 +83,7 @@
 }
 .extraGuestFee, .cleaningFee, .streetAddress, .securityDeposit {
     max-height: 25px;
+
 }
 .totalBeds {
     align-self: flex-end;
@@ -97,5 +101,19 @@
     border: 1px solid #8dcbe0;
     border-radius: 10px;
     color: #8dcbe0;
+}
+.formButton {
+    color: white;
+    width: 100%;
+    height: 40px;
+    font-size: 1.2rem;
+    border-radius: 25px;
+    background-color: rgb(112, 182, 206);
+    outline: none;
+    border: 1px solid lightblue;
+    margin-top: 1%;
+    cursor: pointer;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
 }
 
