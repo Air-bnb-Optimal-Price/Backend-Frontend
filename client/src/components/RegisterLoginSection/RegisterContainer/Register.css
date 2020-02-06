@@ -5,7 +5,7 @@
 }
 
 .form {
-    width: 330px;
+    width: 400px;
     /* height: 90vh; */
     /* padding: 3%; */
     padding-top: 48px;
@@ -14,28 +14,44 @@
     background-color: rgb(255, 255, 255);
     /* border: 1px solid #cacaca; */
     /* box-shadow: 0 4px 5px 7px rgba(37, 37, 37, 0.336), 0 6px 20px 5px rgba(145, 145, 146, 0.336); */
+    display: flex;
+    justify-content: center;
     
 }
-.input-wrapper {
-    width: 80%;
-    margin: 0 auto;
-    margin-left: 13.5%;
 
+.input-wrap {
+    width: 74%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    
+
+    /* margin: 0 auto; */
+    /* margin-left: 13.5%; */
+
+}
+
+.register {
+    display: inline-block;
+    font-size: 2.3rem;
+    margin-bottom: 20px;
+    font-weight: 500;
 }
 .input-container {
     width: 100%;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-around; */
+    justify-content: space-around;
     /* align-items: center; */
 }
-input {
+.input {
     width: 100%;
     height: 40px;
-    padding-left: 3%;
-    margin-bottom: 18px;
-    border-radius: 7px;
-    border: 1px solid #8d8d8dfd;
+    /* padding-left: 3%; */
+    margin-bottom: 11px;
+    border-radius: 2px;
+    border: 1px solid #c9c7c7fd;
     outline: none;
     color: gray;
     font-size: 1rem;
@@ -44,18 +60,19 @@ input {
     color: rgb(168, 168, 168);
     font-size: 0.9rem;
 }
-label {
+.label {
     font-size: 0.9rem;
     font-weight: bold;
     color: rgb(102, 101, 101);
+    width: 100%;
     /* margin-left: 13px; */
 }
-button {
+.button {
     color: white;
-    width: 90%;
+    width: 70%;
     height: 40px;
-    font-size: 1rem;
-    border-radius: 25px;
+    font-size: 1.1rem;
+    border-radius: 30px;
     background-color: #FF5A5F;
     outline: none;
     border: 1px solid #FF5A5F;
@@ -64,7 +81,7 @@ button {
     font-weight: bold;
     /* margin-left: 35px; */
 }
-button:hover {
+.button:hover {
     background-color: #fd3d43;
 }
  a {
@@ -73,8 +90,9 @@ button:hover {
  a:hover {
     text-decoration: underline;
  }
- .link {
-     width: 100%;
+ .link-cont {
+     width: 60%;
+     margin-top: 10px;
  }
 
  .error-text {
@@ -84,3 +102,12 @@ button:hover {
      color: red;
      letter-spacing: 0.02rem;
  }
+
+ .para, .link {
+     display: inline;
+ }
+
+ .para {
+     margin-right: 10px;
+ }
+ 
