@@ -28,6 +28,41 @@ app.put('/user/changePass', ensureAuthenticated, changePassword)
 app.delete('/user/deleteAccount', ensureAuthenticated, deleteAccount)
 app.put('/user/chaneName', ensureAuthenticated, changeUserName)
 
+const db = {
+  title: "AirBNB Bestest Price",
+  subTitle: "Bestest Prices Gah-Ron-Teed"
+}
+
+const getTitle = (req, res, next) => {
+  return res.json({ title: db.title })
+}
+
+const getSubTitle = (req, res, next) => {
+  return res.json({ subTitle: db.subTitle })
+}
+
+const putSubTitle = (req, res, next) => {
+  db.subTitle = req.body.subTitle
+  return res.json({ subTitle: db.subTitle })
+}
+
+const postSubTitle = (req, res, next) => {
+  db.subTitle = req.body.subTitle
+  return res.json({ subTitle: db.subTitle })
+}
+
+const deleteSubTitle = (req, res, next) => {
+  db.subTitle = ""
+  return res.json({ subTitle: db.subTitle })
+}
+
+app.get('/title', getTitle)
+app.get('./subTitle', getSubTitle)
+app.put('./subTitle', putSubTitle)
+app.post('./postSubTitle', postSubTitle)
+app.delete('./deleteSubTitle', deleteSubTitle)
+
+
 // listing routes
 app.post('/listing', postListing)
 
