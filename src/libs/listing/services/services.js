@@ -6,12 +6,12 @@ const googleMapsClient = require('@google/maps').createClient({
 
 const axios = require('axios')
 
-const saveListing = ListingModel => async (listing, userID, latitude, longitude) => {
+const saveListing = ListingModel => async (listing, user_id, latitude, longitude) => {
     let NewListing
 
     try {
         NewListing = await ListingModel.create({
-            user_id: userID,
+            user_id,
             latitude,
             longitude,
             ...listing
@@ -25,10 +25,10 @@ const saveListing = ListingModel => async (listing, userID, latitude, longitude)
     return NewListing
 }
 
-const getListings = ListingModel => async userID => {
+const getListings = ListingModel => async user_id => {
     const Listings = await ListingModel.findAll({
         where: {
-            userID
+            user_id
         }
     })
 
@@ -56,25 +56,28 @@ const geoCoder = async address => {
 const getPrice = async (listing) => {
     // listing.userID = 1
     listing.dataValues.summary = ""
+    listing.dataValues.host_is_superhost = 0
+    listing.dataValues.accomodates = 1
     console.log('bbb', listing.dataValues)
     try {
         const { data } = await axios.post(
             'http://python.foodsquadapp.com/predict',
-            listing.dataVaues,
+            listing.dataValues,
             {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
         console.log('nnn', data)
-        return data.meta.listing_prediction
+        return data.response.listing_prediction
     } catch (e) {
         console.log('mmm', e)
     }
-    return listing_prediction
+    // return listing_prediction
 }
 
 const setPrice = ListingModel => async (id, price) => {
+    console.log('paramsPrice', id, price)
     try {
         const listing = await ListingModel.findOne({
             where: { id }
@@ -83,10 +86,10 @@ const setPrice = ListingModel => async (id, price) => {
         listing.price = price
 
         const pricedListing = await listing.save()
-
+        console.log('sss', pricedListing )
         return pricedListing
     } catch (e) {
-        console.log(e)
+        console.log('fff',e)
     }
 }
 

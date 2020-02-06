@@ -23,12 +23,12 @@ module.exports = async (req, res, next) => {
         const price = await getPrice(savedListing)
 
 
-        await setPrice(pricedListing.id, price)
-        console.log('pricedListing', pricedListing)
+        await setPrice(savedListing.id, price)
+        console.log('pricedListing', price)
 
 
         console.log('savedListing2', savedListing)
-
+// price does not set
         const userListings = await getListings(req.userID)
         console.log(userListings)
 

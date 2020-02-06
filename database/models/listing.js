@@ -16,7 +16,7 @@ module.exports = (sequelize, { STRING, INTEGER, FLOAT }) => {
     cleaning_fee: FLOAT,
     extra_people: FLOAT,
     cancellation_policy: INTEGER,
-    price: INTEGER,
+    price: FLOAT,
     minimum_nights: INTEGER,
     property_type: INTEGER,
   }, {});
