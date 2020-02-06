@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './RentalEvaluationForm.css';
 import axiosWithAuth from '../auth/axiosWithAuth.js';
+import { useAxiosWithAuth } from '../hooks'
 import RentalPrediction from './RentalPrediction';
 import { ReactComponent as ManIcon } from './icons/man.svg';
 import { ReactComponent as MoonIcon } from './icons/moon.svg';
@@ -126,8 +127,9 @@ const RentalEvaluationForm = () => {
       "beds": totalBedsCount
     }
   }
+  const axios = useAxiosWithAuth() 
   const submitProperty = () => {
-    axiosWithAuth()
+    axios
       .post("/listing", getPostableData())
       .then(res => console.log(res));
   }
@@ -262,7 +264,7 @@ const RentalEvaluationForm = () => {
         </div>
         <div className='wizardNav'>
           <button disabled={(stepCount === 1) ? "disabled" : ""} onClick={() => { handleStepDecrement() }} >Previous</button>
-          <button disabled={(stepCount === 9) ? "disabled" : ""} onClick={() => { handleStepIncrement() }} >Next</button>
+          <button disabled={(stepCount === 10) ? "disabled" : ""} onClick={() => { handleStepIncrement() }} >Next</button>
           {/* <input className='submitButton'
             type='submit' 
             value='Submit'

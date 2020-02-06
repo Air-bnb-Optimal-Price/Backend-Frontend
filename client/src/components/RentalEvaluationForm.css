@@ -78,7 +78,7 @@
 .instructions {
     font-size: 2em;
 }
-.extraGuestFee, .cleaningFee {
+.extraGuestFee, .cleaningFee, .streetAddress, .securityDeposit {
     max-height: 25px;
 }
 .totalBeds {
