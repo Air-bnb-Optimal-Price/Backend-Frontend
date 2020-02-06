@@ -57,10 +57,10 @@ const deleteSubTitle = (req, res, next) => {
 }
 
 app.get('/title', getTitle)
-app.get('./subTitle', getSubTitle)
-app.put('./subTitle', putSubTitle)
-app.post('./postSubTitle', postSubTitle)
-app.delete('./deleteSubTitle', deleteSubTitle)
+app.get('/subTitle', getSubTitle)
+app.put('/subTitle', putSubTitle)
+app.post('/subTitle', postSubTitle)
+app.delete('/subTitle', deleteSubTitle)
 
 
 // listing routes
