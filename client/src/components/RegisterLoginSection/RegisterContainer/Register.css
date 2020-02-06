@@ -13,7 +13,7 @@
     height: 95vh;
     /* padding: 3%; */
     margin-top: px;
-    padding-top: 48px;
+    padding-top: 50px;
     /* margin-top: 8vh; */
     border-radius: 5px;
     background-color: rgb(255, 255, 255);
@@ -39,11 +39,18 @@
 
 .register {
     display: inline-block;
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     margin-bottom: 20px;
-    font-weight: 500;
+    font-weight: 600;
     color: #8dcbe0;
+    /* color: gray; */
     letter-spacing: -0.06rem;
+    text-align: center;
+}
+.first-para {
+    margin-bottom: 8px;
+    color: #69bbd6;
+    color: gray;
 }
 .input-container {
     width: 100%;
@@ -55,8 +62,9 @@
 
 .label {
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 100;
     color: #69bbd6;
+    /* color: gray; */
     width: 100%;
     letter-spacing: 0.03rem;
     /* margin-left: 13px; */
@@ -73,7 +81,8 @@
     color: rgb(92, 92, 92);
     font-size: 1rem;
     font-family: 'Montserrat', sans-serif;
-    /* background-color: ; */
+    background-color: rgb(239, 244, 253);
+    background-color: #E8F0FE;
 }
 ::placeholder {
     color: rgb(192, 189, 189);

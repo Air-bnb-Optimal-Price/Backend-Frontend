@@ -73,12 +73,14 @@
     color: grey;
     font-size: 1rem;
     font-family: 'Montserrat', sans-serif;
-    /* background-color: ; */
+    background-color: #E8F0FE;
+    
 }
 ::placeholder {
     color: rgb(192, 189, 189);
     font-size: 0.9rem;
     letter-spacing: 0.01rem;
+
 }
 
 .button2 {

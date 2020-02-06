@@ -53,7 +53,7 @@ function Login(props) {
         <div className="login-container">
             <form onSubmit={handleSubmit} className="form2">
                 <div className="input-wrap2">
-                    <h2 className="login">Sign In</h2>
+                   
                     <div className="input-container2">
                         <label htmlFor="user" className="label2">Username</label>
                         <input
