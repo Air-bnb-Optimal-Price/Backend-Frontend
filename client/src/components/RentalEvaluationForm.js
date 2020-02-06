@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import './RentalEvaluationForm.css';
 import axiosWithAuth from '../auth/axiosWithAuth.js';
@@ -34,6 +35,7 @@ const RentalEvaluationForm = () => {
   const [securityDeposit, setSecurityDeposit] = useState(0);
   const [predictedPrice, setPredictedPrice] = useState(0);
   const [address, setAddress] = useState();
+  const [rentalData, setRentalData] = useState();
 
   const handleStepIncrement = () => {
     setStepCount(Math.min(9, stepCount + 1));
@@ -84,6 +86,9 @@ const RentalEvaluationForm = () => {
   const handleAddressChange = (e) => {
     setAddress(e.target.value);
   }
+  const handleDelete = (e) => {
+    setRentalData(e.target.value);
+  }
   const getTestResponseData = () => {
     return {
       country: "Germany",
@@ -127,7 +132,7 @@ const RentalEvaluationForm = () => {
       "beds": totalBedsCount
     }
   }
-  const axios = useAxiosWithAuth() 
+  const axios = useAxiosWithAuth()
   const submitProperty = () => {
     axios
       .post("/listing", getPostableData())
@@ -135,7 +140,6 @@ const RentalEvaluationForm = () => {
   }
 
   return <div className='rentalEvaluationContainer'>
-    <h1>Rental Evaluation Form</h1>
     <div className='rentalInput'>
       <form onSubmit={handleSubmit} >
         <div className='wizardSection'>
@@ -250,7 +254,7 @@ const RentalEvaluationForm = () => {
             onChange={handleSecurityDeposit}>
           </input>
         </div>
-        <div className={(stepCount === 9) ? 'streetAddressContainer wizardSection' : 'streetAddressContainer wizardSection hidden'}>
+        <div className={(stepCount === 10) ? 'streetAddressContainer wizardSection' : 'streetAddressContainer wizardSection hidden'}>
           <div className='instructions'>What is the address of your property?</div>
           <div className='addressIcon'>
             {/* <AddressIcon /> */}
@@ -263,8 +267,9 @@ const RentalEvaluationForm = () => {
           </input>
         </div>
         <div className='wizardNav'>
-          <button disabled={(stepCount === 1) ? "disabled" : ""} onClick={() => { handleStepDecrement() }} >Previous</button>
-          <button disabled={(stepCount === 10) ? "disabled" : ""} onClick={() => { handleStepIncrement() }} >Next</button>
+          <button className='formButton' disabled={(stepCount === 1) ? "disabled" : ""} onClick={() => { handleStepDecrement() }} >Previous</button>
+          <button className='formButton' disabled={(stepCount === 9) ? "disabled" : ""} onClick={() => { handleStepIncrement() }} >Next</button>
+          <button className='formButton' disabled={(stepCount === 10) ? "disabled" : ""} onClick={() => { handleStepIncrement() }} >Submit</button>
           {/* <input className='submitButton'
             type='submit' 
             value='Submit'
