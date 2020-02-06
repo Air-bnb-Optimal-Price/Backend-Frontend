@@ -36,10 +36,10 @@ const RentalEvaluationForm = () => {
 
   const handleStepIncrement = () => {
     setStepCount(Math.min(8, stepCount + 1));
-    // if (stepCount === 8) {
-    //   submitProperty();
+    if (stepCount === 8) {
+      submitProperty();
       console.log(guestCount, propertyType, roomType, extraGuestFee, cancellationPolicy, bathroomCount, bedroomCount, totalBedsCount, nightStayCount, cleaningFee, securityDeposit, address);
-    // }
+    }
   }
   const handleStepDecrement = () => {
     setStepCount(Math.max(1, stepCount - 1));
@@ -93,7 +93,7 @@ const RentalEvaluationForm = () => {
       lat: 13.3862362,
       room_type: 1,
       accomodates: 4,
-      bathrooms: 1.5,
+      bathrooms: 2,
       bedrooms: 2,
       beds: 2,
       security_deposit: 0,
@@ -251,7 +251,11 @@ const RentalEvaluationForm = () => {
         <div className='wizardNav'>
           <button disabled={(stepCount === 1) ? "disabled" : ""} onClick={() => { handleStepDecrement() }} >Previous</button>
           <button disabled={(stepCount === 7) ? "disabled" : ""} onClick={() => { handleStepIncrement() }} >Next</button>
-          <input value='Submit' type='submit' />
+          <input className='submitButton'
+            type='submit' 
+            value='Submit'
+             onSubmit={handleSubmit} >
+            </input>
         </div>
       </form>
     </div>
