@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // user made imports
-const { register, login, changePassword, deleteAccount } = require('./libs/user/controllers')
+const { register, login, changePassword, deleteAccount, changeUserName } = require('./libs/user/controllers')
 const { ensureAuthenticated } = require('./libs/user/middleware')
 const { postListing } = require('./libs/listing/controllers')
 
@@ -26,6 +26,7 @@ app.post('/user/register', register);
 app.post('/user/login', login)
 app.put('/user/changePass', ensureAuthenticated, changePassword)
 app.delete('/user/deleteAccount', ensureAuthenticated, deleteAccount)
+app.put('/user/chaneName', ensureAuthenticated, changeUserName)
 
 // listing routes
 app.post('/listing', postListing)
