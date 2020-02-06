@@ -8,7 +8,7 @@ module.exports = (sequelize, { STRING, INTEGER, FLOAT }) => {
     longitude: INTEGER,
     latitude: INTEGER,
     room_type: INTEGER,
-    accomodates: INTEGER,
+    accommodates: INTEGER,
     bathrooms: FLOAT,
     bedrooms: INTEGER,
     beds: INTEGER,
