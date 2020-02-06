@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import './RentalEvaluationForm.css';
 import axiosWithAuth from '../auth/axiosWithAuth.js';
@@ -34,6 +35,7 @@ const RentalEvaluationForm = () => {
   const [securityDeposit, setSecurityDeposit] = useState(0);
   const [predictedPrice, setPredictedPrice] = useState(0);
   const [address, setAddress] = useState();
+  const [rentalData, setRentalData] = useState();
 
   const handleStepIncrement = () => {
     setStepCount(Math.min(9, stepCount + 1));
@@ -84,6 +86,9 @@ const RentalEvaluationForm = () => {
   const handleAddressChange = (e) => {
     setAddress(e.target.value);
   }
+  const handleDelete = (e) => {
+    setRentalData(e.target.value);
+  }
   const getTestResponseData = () => {
     return {
       country: "Germany",
@@ -127,7 +132,7 @@ const RentalEvaluationForm = () => {
       "beds": totalBedsCount
     }
   }
-  const axios = useAxiosWithAuth() 
+  const axios = useAxiosWithAuth()
   const submitProperty = () => {
     axios
       .post("/listing", getPostableData())
@@ -135,7 +140,7 @@ const RentalEvaluationForm = () => {
   }
 
   return <div className='rentalEvaluationContainer'>
-    <h1>Rental Evaluation Form</h1>
+    <h1 className='formTitle'>Rental Evaluation Form</h1>
     <div className='rentalInput'>
       <form onSubmit={handleSubmit} >
         <div className='wizardSection'>
