@@ -53,7 +53,7 @@ function Login(props) {
         <div className="login-container">
             <form onSubmit={handleSubmit} className="form2">
                 <div className="input-wrap2">
-                    <h2 className="register">AirBnB Optimal Price Prediction</h2>
+                    <h2 className="register">AirBnB Optimal Price Predictor</h2>
                     <p className="first-para">Sign in to Continue</p>
                     <div className="input-container2">
                         <label htmlFor="user" className="label2">Username</label>
