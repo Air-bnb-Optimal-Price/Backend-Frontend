@@ -26,37 +26,37 @@ const RentalPrediction = (props) => {
         {props.rentalData.price}
         <iframe className='RentalPredictionMap' src="http://maps.google.com/maps?width=300&amp;height=300&amp;hl=en&amp;q=43%20Friedrich%20Strasse%2C%20Berlin%2C%20Germany+(My%20AirBnB%20Property)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"></iframe>
 
-        <div className='roomType'>
+        <div className='roomType left'>
             Room Type: {translatedRentalData.room_type}
         </div>
-        <div className='propertyType'>
+        <div className='propertyType left '>
             Property Type: {translatedRentalData.property_type}
         </div>
-        <div className='numberOfGuests'>
+        <div className='numberOfGuests left'>
             Number of Guests: {translatedRentalData.accommodates}
         </div>
-        <div className='minimumNights'>
+        <div className='minimumNights left'>
             Minimum Nights Stay: {translatedRentalData.minimum_nights}
         </div>
-        <div className='bathrooms'>
+        <div className='bathrooms left'>
             Number of Bathrooms: {translatedRentalData.bathrooms}
         </div>
-        <div className='bedrooms'>
+        <div className='bedrooms left'>
             Number of Bedrooms: {translatedRentalData.bedrooms}
         </div>
-        <div className='beds'>
+        <div className='beds left'>
             Number of Beds: {translatedRentalData.beds}
         </div>
-        <div className='securityDeposit'>
+        <div className='securityDeposit left'>
             Amount of Security Deposit: {translatedRentalData.security_deposit}
         </div>
-        <div className='cleaningFee'>
+        <div className='cleaningFee left'>
             Amount of Cleaning Fee: {translatedRentalData.cleaning_fee}
         </div>
-        <div className='extraPeople'>
+        <div className='extraPeople left'>
             Amount of Extra Person fee: {translatedRentalData.extra_people}
         </div>
-        <div className='cancellationPolicy'>
+        <div className='cancellationPolicy left'>
             Cancellation Policy: {translatedRentalData.cancellation_policy}
         </div>
 

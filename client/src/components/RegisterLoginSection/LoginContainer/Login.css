@@ -17,7 +17,7 @@
     /* margin-top: 8vh; */
     border-radius: 5px;
     background-color: rgb(255, 255, 255);
-    /* border: 1px solid #cacaca; */
+    border: 1px solid #cacaca;
     /* box-shadow: 0 4px 5px 7px rgba(37, 37, 37, 0.336), 0 6px 20px 5px rgba(145, 145, 146, 0.336); */
     display: flex;
     justify-content: center;
@@ -39,11 +39,19 @@
 
 .login {
     display: inline-block;
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     margin-bottom: 20px;
-    font-weight: 500;
+    font-weight: 600;
     color: #8dcbe0;
+    /* color: gray; */
     letter-spacing: -0.06rem;
+    text-align: center;
+}
+
+.first-para2 {
+    margin-bottom: 15px;
+    color: #69bbd6;
+    color: gray;
 }
 .input-container2 {
     width: 100%;
@@ -57,6 +65,8 @@
     font-size: 1rem;
     font-weight: 500;
     color: #69bbd6;
+    color: rgba(46, 133, 111, 0.712);
+    color: rgb(128, 128, 128);
     width: 100%;
     letter-spacing: 0.03rem;
     /* margin-left: 13px; */
@@ -68,7 +78,11 @@
     margin-bottom: 20px;
     padding-left: 13px;
     border-radius: 5px;
-    border: 2px solid rgb(203, 232, 241);
+    border: 1px solid rgb(126, 187, 206);
+    border: 1px solid #8dcbe0;
+    /* border: 1px solid rgb(132, 209, 132);
+    border: 1px solid #B8F68C;
+    border: 1px solid rgba(46, 133, 111, 0.527); */
     outline: none;
     color: grey;
     font-size: 1rem;

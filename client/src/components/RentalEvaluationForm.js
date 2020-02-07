@@ -139,7 +139,9 @@ const RentalEvaluationForm = () => {
       .then(res => console.log(res));
   }
 
-  return <div className='rentalEvaluationContainer'>
+  return (
+  <div className="rentalContainer">
+  <div className='rentalEvaluationContainer'>
     <div className='rentalInput'>
       <form onSubmit={handleSubmit} >
         <div className='wizardSection'>
@@ -282,6 +284,8 @@ const RentalEvaluationForm = () => {
       {getTestResponseArray().map(e => (<RentalPrediction rentalData={e} />))}
     </div>
   </div>
+  </div>
+  )
 }
 
 export default RentalEvaluationForm;
