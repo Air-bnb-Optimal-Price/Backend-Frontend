@@ -146,7 +146,6 @@ const RentalEvaluationForm = () => {
   }
 
   return <div className='rentalEvaluationContainer'>
-    <h1 className='formTitle'>Rental Evaluation Form</h1>
     <div className='rentalInput'>
       {/* <form onSubmit={handleSubmit} > */}
       <form >
@@ -262,7 +261,7 @@ const RentalEvaluationForm = () => {
             onChange={handleSecurityDeposit}>
           </input>
         </div>
-        <div className={(stepCount === 9) ? 'streetAddressContainer wizardSection' : 'streetAddressContainer wizardSection hidden'}>
+        <div className={(stepCount === 10) ? 'streetAddressContainer wizardSection' : 'streetAddressContainer wizardSection hidden'}>
           <div className='instructions'>What is the address of your property?</div>
           <div className='addressIcon'>
             {/* <AddressIcon /> */}
@@ -274,7 +273,20 @@ const RentalEvaluationForm = () => {
             onChange={handleAddressChange}>
           </input>
         </div>
+<<<<<<< HEAD
 
+=======
+        <div className='wizardNav'>
+          <button className='formButton' disabled={(stepCount === 1) ? "disabled" : ""} onClick={() => { handleStepDecrement() }} >Previous</button>
+          <button className='formButton' disabled={(stepCount === 9) ? "disabled" : ""} onClick={() => { handleStepIncrement() }} >Next</button>
+          <button className='formButton' disabled={(stepCount === 10) ? "disabled" : ""} onClick={() => { handleStepIncrement() }} >Submit</button>
+          {/* <input className='submitButton'
+            type='submit' 
+            value='Submit'
+             onSubmit={handleSubmit} >
+            </input> */}
+        </div>
+>>>>>>> 8ac4e11ee8dc6ac52a4147ea4dceab94ff649572
       </form>
       <div className='wizardNav'>
         <button disabled={(stepCount === 1) ? "disabled" : ""} onClick={() => { handleStepDecrement() }} >Previous</button>

@@ -91,7 +91,8 @@ function Register() {
         <div className="register-container">
             <form onSubmit={handleSubmit} className="form">
                 <div className="input-wrap">
-                    <h2 className="register">Sign Up</h2>
+                    <h2 className="register">AirBnB Optimal Price Prediction</h2>
+                    <p className="first-para">Sign up with Email</p>
                     <div className="input-container">
                         <label htmlFor="user" className="label">Username</label>
                         <input
@@ -147,14 +148,7 @@ function Register() {
     );
 }
 
-// const FormikRegister = withFormik({
-//     mapPropsToValues(props){
-//         return {
-//             username: props.user
-//         }
-//     }
 
-// })(Register);
 
 export default Register;
 

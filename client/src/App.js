@@ -4,6 +4,7 @@ import RegisterLogin from "./components/RegisterLoginSection/RegisterLoginContai
 import './App.css';
 import { Switch, Route } from 'react-router-dom'
 import axios from 'axios'
+import { Header } from './components/Header/Header';
 import RentalEvaluationForm from './components/RentalEvaluationForm';
 import Login from './components/RegisterLoginSection/LoginContainer/Login'
 import Register from './components/RegisterLoginSection/RegisterContainer/Register'
@@ -12,6 +13,7 @@ function App() {
 
   return (
     <div className="App">
+      
       <Switch>
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
