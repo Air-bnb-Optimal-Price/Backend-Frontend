@@ -64,7 +64,7 @@
     font-size: 1rem;
     font-weight: 100;
     color: #69bbd6;
-    /* color: gray; */
+    color: gray;
     width: 100%;
     letter-spacing: 0.03rem;
     /* margin-left: 13px; */
@@ -76,13 +76,14 @@
     margin-bottom: 20px;
     padding-left: 13px;
     border-radius: 5px;
-    border: 2px solid rgb(203, 232, 241);
+    border: 1px solid rgb(203, 232, 241);
+    border: 1px solid rgb(132, 209, 132);
     outline: none;
     color: rgb(92, 92, 92);
     font-size: 1rem;
     font-family: 'Montserrat', sans-serif;
-    background-color: rgb(239, 244, 253);
-    background-color: #E8F0FE;
+    /* background-color: rgb(239, 244, 253); */
+    /* background-color: #E8F0FE; */
 }
 ::placeholder {
     color: rgb(192, 189, 189);
