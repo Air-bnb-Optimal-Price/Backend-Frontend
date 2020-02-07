@@ -36,6 +36,7 @@ const RentalEvaluationForm = () => {
   const [predictedPrice, setPredictedPrice] = useState(0);
   const [address, setAddress] = useState("");
   const [rentalData, setRentalData] = useState();
+  const [loading, setLoading] = useState(false)
 
   const handleStepIncrement = () => {
     console.log('nnnnnnnnnnnnnnnnnnnnnnnnnnnnnn', getPostableData())
@@ -140,9 +141,13 @@ const RentalEvaluationForm = () => {
   }
   const axios = useAxiosWithAuth()
   const submitProperty = () => {
+    setLoading(true)
     axios
       .post("/listing", getPostableData())
-      .then(res => console.log(res));
+      .then(res => {
+        // setPrice(res.data.price)
+        setLoading(false)
+      });
   }
 
   return <div className='rentalEvaluationContainer'>
@@ -283,6 +288,7 @@ const RentalEvaluationForm = () => {
           onClick={handleSubmit} >
           Submit
         </button >
+        {loading ? <div className="loader">LOADING</div> : null}
       </div>
     </div>
     <div className='rentalPredictions'>

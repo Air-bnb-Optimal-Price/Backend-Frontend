@@ -84,6 +84,24 @@
     height: 120px;
 }
 
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    position: absolute;
+    position: absolute;
+    top: 45%;  /* position the top  edge of the element at the middle of the parent */
+    left: 50%; /* position the left edge of the element at the middle of the parent */
+    color: white;
+    font-size: 25px;
+    transform: translate(-50%, -50%);
+    border: none;
+    border-radius: 10px;
+    width: 400px;
+    height: 200px;
+}
+
 .wizardNav button {    
     margin-left: 60px;
     margin-right: 60px;
