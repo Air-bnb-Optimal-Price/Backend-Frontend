@@ -7,10 +7,7 @@
     /* flex-direction: column; */
 }
 
-.rentalInput{
-    display: flex;
-    align-items: center;
-}
+
 .rentalEvaluationContainer .rentalInput, .rentalEvaluationContainer .rentalPrediction {
     border: 1px solid black;
     border-radius: 10px;
@@ -20,6 +17,15 @@
     min-height: 640px;
     /* width: 100%; */
     margin: 5px;
+}
+
+.rentalInput{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+    min-width: 600px;
 }
 
 .rentalEvaluationContainer h1, .rentalEvaluationContainer form {
@@ -59,14 +65,30 @@
     display: none !important;
 }
 
+.submitButton {
+    background: green;
+    position: absolute;
+    position: absolute;
+    top: 45%;  /* position the top  edge of the element at the middle of the parent */
+    left: 45%; /* position the left edge of the element at the middle of the parent */
+    color: white;
+    font-size: 15px;
+    transform: translate(-50%, -50%);
+    border: none;
+    border-radius: 10px;
+}
+
 .wizardNav {
     display:flex;
     margin: 10px;
+    height: 120px;
 }
 
 .wizardNav button {    
     margin-left: 60px;
     margin-right: 60px;
+    height: 40px;
+    width: 200px;
 }
 .wizardNav button:disabled {
     background-color:darkgray;

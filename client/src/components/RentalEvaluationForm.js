@@ -39,7 +39,7 @@ const RentalEvaluationForm = () => {
 
   const handleStepIncrement = () => {
     console.log('nnnnnnnnnnnnnnnnnnnnnnnnnnnnnn', getPostableData())
-    setStepCount(Math.min(9, stepCount + 1));
+    setStepCount(Math.min(10, stepCount + 1));
   }
 
   const handleStepDecrement = () => {
@@ -149,27 +149,27 @@ const RentalEvaluationForm = () => {
     <div className='rentalInput'>
       {/* <form onSubmit={handleSubmit} > */}
       <form >
-        <div className='wizardSection'>
-          {/* Number of guests */}
-          <div className={(stepCount === 1) ? 'guestCount wizardSection' : 'guestCount wizardSection hidden'}>
-            <div className='instructions'>Select the number of guests your property can accommodate and add the fee per extra guest...</div>
-            {[0, 1, 2, 3, 4, 5].map(elem => <div onClick={() => { handleOnclickIcon(elem + 1) }} className={(guestCount > elem) ? 'guestIcon icon selected' : 'guestIcon icon'}>
-              <ManIcon />
-            </div>)}
-          </div>
-          {/* Extra guest fee */}
-          <div className={(stepCount === 1) ? 'extraGuestFee wizardSection' : 'extraGuestFee wizardSection hidden'}>
-            <span>Fee per extra guest:</span>
-            <input className='extraGuestFee'
-              type='number' min="0.00" step="1.00" max="999"
-              placeholder="Extra Guest Fee"
-              onChange={handleExtraGuestFee}
-              value={extraGuestFee}
-              disabled={(guestCount > 1) ? '' : 'disabled'}
-            >
-            </input>
-          </div>
+        {/* <div className='wizardSection'> */}
+        {/* Number of guests */}
+        <div className={(stepCount === 1) ? 'guestCount wizardSection' : 'guestCount wizardSection hidden'}>
+          <div className='instructions'>Select the number of guests your property can accommodate and add the fee per extra guest...</div>
+          {[0, 1, 2, 3, 4, 5].map(elem => <div onClick={() => { handleOnclickIcon(elem + 1) }} className={(guestCount > elem) ? 'guestIcon icon selected' : 'guestIcon icon'}>
+            <ManIcon />
+          </div>)}
         </div>
+        {/* Extra guest fee */}
+        <div className={(stepCount === 1) ? 'extraGuestFee wizardSection' : 'extraGuestFee wizardSection hidden'}>
+          <span>Fee per extra guest:</span>
+          <input className='extraGuestFee'
+            type='text'
+            placeholder="Extra Guest Fee"
+            onChange={handleExtraGuestFee}
+            value={extraGuestFee}
+            disabled={(guestCount > 1) ? '' : 'disabled'}
+          >
+          </input>
+        </div>
+        {/* </div> */}
         {/* minimum nights stay */}
         <div className={(stepCount === 2) ? 'nightStayCount wizardSection' : 'nightStayCount wizardSection hidden'}>
           <div className='instructions'>Add the minimum number of nights required to rent your property...</div>
@@ -275,14 +275,15 @@ const RentalEvaluationForm = () => {
         </div>
       </form>
       <div className='wizardNav'>
-        <button disabled={(stepCount === 1) ? "disabled" : ""} onClick={() => { handleStepDecrement() }} >Previous</button>
-        <button disabled={(stepCount === 10) ? "disabled" : ""} onClick={() => { handleStepIncrement() }} >Next</button>
 
+        <button className={stepCount === 10 ? 'hidden' : "navButton"} disabled={(stepCount === 1) ? "disabled" : ""} onClick={() => { handleStepDecrement() }} >Previous</button>
+        <button className={stepCount === 10 ? 'hidden' : "navButton"} disabled={(stepCount === 10) ? "disabled" : ""} onClick={() => { handleStepIncrement() }} >Next</button>
+
+        <button className={stepCount === 10 ? 'submitButton' : 'hidden'}
+          onClick={handleSubmit} >
+          Submit
+        </button >
       </div>
-      <button className='submitButton'
-        onClick={handleSubmit} >
-        Submit
-          </button >
     </div>
     <div className='rentalPredictions'>
       {getTestResponseArray().map(e => (<RentalPrediction rentalData={e} />))}
