@@ -13,10 +13,7 @@
     /* flex-direction: column; */
 }
 
-.rentalInput{
-    display: flex;
-    align-items: center;
-}
+
 .rentalEvaluationContainer .rentalInput, .rentalEvaluationContainer .rentalPrediction {
     border: 1px solid black;
     border-radius: 10px;
@@ -26,6 +23,15 @@
     min-height: 640px;
     /* width: 100%; */
     margin: 5px;
+}
+
+.rentalInput{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+    min-width: 600px;
 }
 
 .rentalEvaluationContainer h1, .rentalEvaluationContainer form {
@@ -40,12 +46,7 @@
     fill: blue;
 }
 
-.cancellationPolicy {
-    display: inline-block;
-    color:rgb(233, 239, 240);
-    border: 1px solid black;
-    font-size: 0.9em;
-}
+
 
 .cancellationPolicy.selected {
     background: blue;
@@ -65,14 +66,66 @@
     display: none !important;
 }
 
+.submitButton {
+    background: green;
+    position: absolute;
+    position: absolute;
+    top: 45%;  /* position the top  edge of the element at the middle of the parent */
+    left: 45%; /* position the left edge of the element at the middle of the parent */
+    color: white;
+    font-size: 15px;
+    transform: translate(-50%, -50%);
+    border: none;
+    border-radius: 10px;
+}
+
 .wizardNav {
     display:flex;
     margin: 10px;
+    height: 120px;
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    position: absolute;
+    position: absolute;
+    top: 45%;  /* position the top  edge of the element at the middle of the parent */
+    left: 50%; /* position the left edge of the element at the middle of the parent */
+    color: white;
+    font-size: 25px;
+    transform: translate(-50%, -50%);
+    border: none;
+    border-radius: 10px;
+    width: 400px;
+    height: 200px;
+}
+
+.price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    position: absolute;
+    position: absolute;
+    top: 45%;  /* position the top  edge of the element at the middle of the parent */
+    left: 50%; /* position the left edge of the element at the middle of the parent */
+    color: white;
+    font-size: 25px;
+    transform: translate(-50%, -50%);
+    border: none;
+    border-radius: 10px;
+    width: 400px;
+    height: 200px;
 }
 
 .wizardNav button {    
     margin-left: 60px;
     margin-right: 60px;
+    height: 40px;
+    width: 200px;
 }
 .wizardNav button:disabled {
     background-color:darkgray;
@@ -124,3 +177,14 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+.cancellationPolicy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:black;
+    border: 1px solid black;
+    font-size: 15px;
+    width: 100px;
+    height:100px;
+    text-align: center;
+}

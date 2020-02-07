@@ -34,21 +34,29 @@ const RentalEvaluationForm = () => {
   const [cleaningFee, setCleaningFee] = useState(0);
   const [securityDeposit, setSecurityDeposit] = useState(0);
   const [predictedPrice, setPredictedPrice] = useState(0);
-  const [address, setAddress] = useState();
+  const [address, setAddress] = useState("");
   const [rentalData, setRentalData] = useState();
+  const [loading, setLoading] = useState(false)
+  const [price, setPrice] = useState(null)
 
   const handleStepIncrement = () => {
-    setStepCount(Math.min(9, stepCount + 1));
+    console.log('nnnnnnnnnnnnnnnnnnnnnnnnnnnnnn', getPostableData())
+    setStepCount(Math.min(10, stepCount + 1));
   }
+
   const handleStepDecrement = () => {
     setStepCount(Math.max(1, stepCount - 1));
   }
+
   const handleSubmit = (event) => {
+
+    console.log('handleSubmitInvoked')
     event.preventDefault();
     submitProperty();
-    console.log(getPostableData());
+    console.log('*****************88', getPostableData());
     console.log(guestCount, propertyType, roomType, extraGuestFee, cancellationPolicy, bathroomCount, bedroomCount, totalBedsCount, nightStayCount, cleaningFee, securityDeposit, address);
   }
+
   const handleOnclickIcon = (newval) => {
     setGuestCount(newval);
   }
@@ -71,8 +79,8 @@ const RentalEvaluationForm = () => {
     setBedroomCount(newval);
     setTotalBedsCount(Math.min(newval, totalBedsCount));
   }
-  const handleTotalBeds = (newval) => {
-    setTotalBedsCount(newval);
+  const handleTotalBeds = (event) => {
+    setTotalBedsCount(event.target.value);
   }
   const handleOnclickNightStay = (newval) => {
     setNightStayCount(newval);
@@ -89,31 +97,8 @@ const RentalEvaluationForm = () => {
   const handleDelete = (e) => {
     setRentalData(e.target.value);
   }
-  const getTestResponseData = () => {
-    return {
-      country: "Germany",
-      zip: '104',
-      street_addr: '1001 Berlin Drive',
-      long: 52.5218748,
-      lat: 13.3862362,
-      room_type: 1,
-      accomodates: 4,
-      bathrooms: 2,
-      bedrooms: 2,
-      beds: 2,
-      security_deposit: 0,
-      cleaning_fee: 50,
-      extra_people: 10,
-      cancellation_policy: 1,
-      price: 66.99,
-      minimum_nights: 1,
-      property_type: 1,
-      availability_365: 1
-    }
-  }
-  const getTestResponseArray = () => {
-    return [getPostableData()];
-  }
+
+
   const getPostableData = () => {
     return {
       "country": "Germany",
@@ -134,37 +119,40 @@ const RentalEvaluationForm = () => {
   }
   const axios = useAxiosWithAuth()
   const submitProperty = () => {
+    setLoading(true)
     axios
       .post("/listing", getPostableData())
-      .then(res => console.log(res));
+      .then(res => {
+        setPrice(Math.trunc(res.data.price * 100) / 100)
+        setLoading(false)
+      });
   }
 
   return (
   <div className="rentalContainer">
   <div className='rentalEvaluationContainer'>
     <div className='rentalInput'>
-      <form onSubmit={handleSubmit} >
-        <div className='wizardSection'>
-          {/* Number of guests */}
-          <div className={(stepCount === 1) ? 'guestCount wizardSection' : 'guestCount wizardSection hidden'}>
-            <div className='instructions'>Select the number of guests your property can accommodate and add the fee per extra guest...</div>
-            {[0, 1, 2, 3, 4, 5].map(elem => <div onClick={() => { handleOnclickIcon(elem + 1) }} className={(guestCount > elem) ? 'guestIcon icon selected' : 'guestIcon icon'}>
-              <ManIcon />
-            </div>)}
-          </div>
-          {/* Extra guest fee */}
-          <div className={(stepCount === 1) ? 'extraGuestFee wizardSection' : 'extraGuestFee wizardSection hidden'}>
-            <span>Fee per extra guest:</span>
-            <input className='extraGuestFee'
-              type='number' min="0.00" step="1.00" max="999"
-              placeholder="Extra Guest Fee"
-              onChange={handleExtraGuestFee}
-              value={extraGuestFee}
-              disabled={(guestCount > 1) ? '' : 'disabled'}
-            >
-            </input>
-          </div>
+      <form >
+        {/* Number of guests */}
+        <div className={(stepCount === 1) ? 'guestCount wizardSection' : 'guestCount wizardSection hidden'}>
+          <div className='instructions'>Select the number of guests your property can accommodate and add the fee per extra guest...</div>
+          {[0, 1, 2, 3, 4, 5].map(elem => <div onClick={() => { handleOnclickIcon(elem + 1) }} className={(guestCount > elem) ? 'guestIcon icon selected' : 'guestIcon icon'}>
+            <ManIcon />
+          </div>)}
         </div>
+        {/* Extra guest fee */}
+        <div className={(stepCount === 1) ? 'extraGuestFee wizardSection' : 'extraGuestFee wizardSection hidden'}>
+          <span>Fee per extra guest:</span>
+          <input className='extraGuestFee'
+            type='text'
+            placeholder="Extra Guest Fee"
+            onChange={handleExtraGuestFee}
+            value={extraGuestFee}
+            disabled={(guestCount > 1) ? '' : 'disabled'}
+          >
+          </input>
+        </div>
+        {/* </div> */}
         {/* minimum nights stay */}
         <div className={(stepCount === 2) ? 'nightStayCount wizardSection' : 'nightStayCount wizardSection hidden'}>
           <div className='instructions'>Add the minimum number of nights required to rent your property...</div>
@@ -177,12 +165,13 @@ const RentalEvaluationForm = () => {
         </div>
         {/* number of bedrooms */}
         <div className={(stepCount === 3) ? 'bedroomCount wizardSection' : 'bedroomCount wizardSection hidden'}>
-          <div className='instructions'>Add the number of bedrooms your property has...</div>
+          <div className='instructions'>Add the number of bedrooms your property has, then the number of beds</div>
           <div onClick={() => { handleOnclickBedroom(0) }} className={(bedroomCount == 0) ? 'bedroomIcon selected icon' : 'bedroomIcon icon'}>
             <NoBedIcon />
           </div>
+
           <input className="totalBeds"
-            type='number min="0.00" step="1.00" max="10"'
+            type='text'
             placeholder="Number of Beds"
             value={totalBedsCount}
             onChange={handleTotalBeds}>
@@ -236,7 +225,7 @@ const RentalEvaluationForm = () => {
               <CleaningFee />
             </div>
             <input className="cleaningFeeContainer"
-              type='number' min="0.00" step="0.01" max="999"
+              type='text' 
               placeholder="Cleaning Fee"
               value={cleaningFee}
               onChange={handleCleaningFee}>
@@ -250,39 +239,39 @@ const RentalEvaluationForm = () => {
             <SecurityDeposit />
           </div>
           <input className="securityDeposit"
-            type='number' min="0.00" step="0.01" max="2500"
+            type='text'
             placeholder="Security Deposit"
             value={securityDeposit}
             onChange={handleSecurityDeposit}>
           </input>
         </div>
-        <div className={(stepCount === 10) ? 'streetAddressContainer wizardSection' : 'streetAddressContainer wizardSection hidden'}>
+        <div className={(stepCount === 9) ? 'streetAddressContainer wizardSection' : 'streetAddressContainer wizardSection hidden'}>
           <div className='instructions'>What is the address of your property?</div>
           <div className='addressIcon'>
             {/* <AddressIcon /> */}
           </div>
           <input className='streetAddress'
-            type='text'
+            type='textarea'
             placeholder='Street Address'
             value={address}
             onChange={handleAddressChange}>
           </input>
         </div>
-        <div className='wizardNav'>
-          <button className='formButton' disabled={(stepCount === 1) ? "disabled" : ""} onClick={() => { handleStepDecrement() }} >Previous</button>
-          <button className='formButton' disabled={(stepCount === 9) ? "disabled" : ""} onClick={() => { handleStepIncrement() }} >Next</button>
-          <button className='formButton' disabled={(stepCount === 10) ? "disabled" : ""} onClick={() => { handleStepIncrement() }} >Submit</button>
-          {/* <input className='submitButton'
-            type='submit' 
-            value='Submit'
-             onSubmit={handleSubmit} >
-            </input> */}
-        </div>
       </form>
+      <div className='wizardNav'>
+
+        <button className={stepCount === 10 ? 'hidden' : "navButton"} disabled={(stepCount === 1) ? "disabled" : ""} onClick={() => { handleStepDecrement() }} >Previous</button>
+        <button className={stepCount === 10 ? 'hidden' : "navButton"} disabled={(stepCount === 10) ? "disabled" : ""} onClick={() => { handleStepIncrement() }} >Next</button>
+
+        <button className={stepCount === 10 ? 'submitButton' : 'hidden'}
+          onClick={handleSubmit} >
+          Submit
+        </button >
+        {loading ? <div className="loader">LOADING</div> : null}
+        {price ? <div className="price">{price}</div> : null}
+      </div>
     </div>
-    <div className='rentalPredictions'>
-      {getTestResponseArray().map(e => (<RentalPrediction rentalData={e} />))}
-    </div>
+
   </div>
   </div>
   )
@@ -290,22 +279,3 @@ const RentalEvaluationForm = () => {
 
 export default RentalEvaluationForm;
 
-    // username: value1
-    // password: value2
-
-    // id - int(20) - Your DB id for the listing. Will be used to GET data when no changes need to be made
-// summary - string < 300 - Brief description of the property and keywords ("Great Location!")
-    // host_is_superhost - bool - Is the user host a super member?
-    // latitude - float/number - 15 decimal places
-    // longitude - float/number - 15 decimal places
-                          // property_type - int(1) - 0 = Guesthouse, 1 = Apartment, 2 = Condo, 3 = House, 4 = Other
-                          // room_type - int(1) - 0 = Private Room, 1 = Entire House, 2 = Other
-                          // accomodates - int(1) <= 6 - How many people can it handle? 
-                          // bathrooms - int(1) <= 5 - How many bathrooms?
-                          // bedrooms - float/number(2) <= 5 - How many bedrooms?
-                          // beds - int(1) <= 5 - How many beds are available?
-                          // security_deposit - float/number(2 decimal places) - If there is a security deposit, how much? If none, 0.00
-                          // cleaning_fee - float/number(2 decimal places) - If there is a cleaning fee, how much? If none, 0.00
-                          // extra_people - float/number(2 decimal places) - Is there a fee for guests?
-                          // minimum_nights - int(4) <= 1255 - Minimum time a guest **has** to stay
-                          // cancellation_policy - int(1) - 0 = 14 day grace period, 1 = flexible, 2 = moderate, 3 = 30 day, 4 = 60 day
