@@ -37,6 +37,7 @@ const RentalEvaluationForm = () => {
   const [address, setAddress] = useState("");
   const [rentalData, setRentalData] = useState();
   const [loading, setLoading] = useState(false)
+  const [price, setPrice] = useState(null)
 
   const handleStepIncrement = () => {
     console.log('nnnnnnnnnnnnnnnnnnnnnnnnnnnnnn', getPostableData())
@@ -145,7 +146,7 @@ const RentalEvaluationForm = () => {
     axios
       .post("/listing", getPostableData())
       .then(res => {
-        // setPrice(res.data.price)
+        setPrice(Math.trunc(res.data.price * 100)/100)
         setLoading(false)
       });
   }
@@ -289,11 +290,12 @@ const RentalEvaluationForm = () => {
           Submit
         </button >
         {loading ? <div className="loader">LOADING</div> : null}
+        {price ? <div className="price">{price}</div> : null}
       </div>
     </div>
-    <div className='rentalPredictions'>
+    {/* <div className='rentalPredictions'>
       {getTestResponseArray().map(e => (<RentalPrediction rentalData={e} />))}
-    </div>
+    </div> */}
   </div>
 }
 
