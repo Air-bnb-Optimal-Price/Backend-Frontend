@@ -38,11 +38,11 @@ const getListings = ListingModel => async user_id => {
 const geoCoder = async address => {
     try {
         const res = await googleMapsClient.geocode(
-            { address: 'Wilmersdorfer Str. 148, 10585 Berlin, Germany' }
+            { address: 'Germany, Berlin ,' + address }
         ).asPromise()
 
         const code = res.json.results[0].geometry.location
-
+        console.log('fff', address, code)
         return {
             latitude: code.lat,
             longitude: code.lng
@@ -57,7 +57,7 @@ const getPrice = async (listing) => {
     // listing.userID = 1
     listing.dataValues.summary = ""
     listing.dataValues.host_is_superhost = 0
-    listing.dataValues.accomodates = 1
+    listing.dataValues.accomodates = listing.dataValues.accommodates 
     console.log('bbb', listing.dataValues)
     try {
         const { data } = await axios.post(
