@@ -34,21 +34,27 @@ const RentalEvaluationForm = () => {
   const [cleaningFee, setCleaningFee] = useState(0);
   const [securityDeposit, setSecurityDeposit] = useState(0);
   const [predictedPrice, setPredictedPrice] = useState(0);
-  const [address, setAddress] = useState();
+  const [address, setAddress] = useState("");
   const [rentalData, setRentalData] = useState();
 
   const handleStepIncrement = () => {
+    console.log('nnnnnnnnnnnnnnnnnnnnnnnnnnnnnn', getPostableData())
     setStepCount(Math.min(9, stepCount + 1));
   }
+
   const handleStepDecrement = () => {
     setStepCount(Math.max(1, stepCount - 1));
   }
+
   const handleSubmit = (event) => {
+
+    console.log('handleSubmitInvoked')
     event.preventDefault();
     submitProperty();
-    console.log(getPostableData());
+    console.log('*****************88', getPostableData());
     console.log(guestCount, propertyType, roomType, extraGuestFee, cancellationPolicy, bathroomCount, bedroomCount, totalBedsCount, nightStayCount, cleaningFee, securityDeposit, address);
   }
+
   const handleOnclickIcon = (newval) => {
     setGuestCount(newval);
   }
@@ -142,7 +148,8 @@ const RentalEvaluationForm = () => {
   return <div className='rentalEvaluationContainer'>
     <h1 className='formTitle'>Rental Evaluation Form</h1>
     <div className='rentalInput'>
-      <form onSubmit={handleSubmit} >
+      {/* <form onSubmit={handleSubmit} > */}
+      <form >
         <div className='wizardSection'>
           {/* Number of guests */}
           <div className={(stepCount === 1) ? 'guestCount wizardSection' : 'guestCount wizardSection hidden'}>
@@ -267,16 +274,17 @@ const RentalEvaluationForm = () => {
             onChange={handleAddressChange}>
           </input>
         </div>
-        <div className='wizardNav'>
-          <button disabled={(stepCount === 1) ? "disabled" : ""} onClick={() => { handleStepDecrement() }} >Previous</button>
-          <button disabled={(stepCount === 10) ? "disabled" : ""} onClick={() => { handleStepIncrement() }} >Next</button>
-          {/* <input className='submitButton'
-            type='submit' 
-            value='Submit'
-             onSubmit={handleSubmit} >
-            </input> */}
-        </div>
+
       </form>
+      <div className='wizardNav'>
+        <button disabled={(stepCount === 1) ? "disabled" : ""} onClick={() => { handleStepDecrement() }} >Previous</button>
+        <button disabled={(stepCount === 10) ? "disabled" : ""} onClick={() => { handleStepIncrement() }} >Next</button>
+
+      </div>
+      <button className='submitButton'
+        onClick={handleSubmit} >
+        Submit
+          </button >
     </div>
     <div className='rentalPredictions'>
       {getTestResponseArray().map(e => (<RentalPrediction rentalData={e} />))}
