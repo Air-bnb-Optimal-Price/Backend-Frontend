@@ -261,7 +261,7 @@ const RentalEvaluationForm = () => {
             onChange={handleSecurityDeposit}>
           </input>
         </div>
-        <div className={(stepCount === 10) ? 'streetAddressContainer wizardSection' : 'streetAddressContainer wizardSection hidden'}>
+        <div className={(stepCount === 9) ? 'streetAddressContainer wizardSection' : 'streetAddressContainer wizardSection hidden'}>
           <div className='instructions'>What is the address of your property?</div>
           <div className='addressIcon'>
             {/* <AddressIcon /> */}

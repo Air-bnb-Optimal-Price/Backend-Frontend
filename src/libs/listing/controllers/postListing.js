@@ -4,8 +4,9 @@ module.exports = async (req, res, next) => {
     req.userID = 1
     try {
         const body = req.body
+        console.log('boddy', body)
 
-        const { longitude, latitude } = await geoCoder(body.country + " ," + body.street_address)
+        const { longitude, latitude } = await geoCoder(body.street_addr)
 
         const listingWithCoords = {
             ...req.body,
