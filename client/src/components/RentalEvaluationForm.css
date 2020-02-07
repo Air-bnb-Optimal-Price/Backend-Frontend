@@ -40,12 +40,7 @@
     fill: blue;
 }
 
-.cancellationPolicy {
-    display: inline-block;
-    color:rgb(233, 239, 240);
-    border: 1px solid black;
-    font-size: 0.9em;
-}
+
 
 .cancellationPolicy.selected {
     background: blue;
@@ -175,3 +170,14 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+.cancellationPolicy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:black;
+    border: 1px solid black;
+    font-size: 15px;
+    width: 100px;
+    height:100px;
+    text-align: center;
+}
